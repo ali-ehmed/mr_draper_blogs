@@ -14,6 +14,7 @@ class Blog < ApplicationRecord
 
   # Attributes
   #
+  enum status: { draft: 'draft', scheduled: 'scheduled', published: 'published' }
 
   # Delegates
   #
@@ -21,6 +22,7 @@ class Blog < ApplicationRecord
   # Validation Macros
   #
   validates_presence_of :title, :main_content
+
   # Callbacks
   #
 

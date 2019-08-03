@@ -8,20 +8,18 @@
     @extend .position-absolute;
     z-index: -1;
 
-    &__layer {
-      background-color: $black;
-      @extend .h-100;
-      @extend .w-100;
-      @extend .position-absolute;
-      opacity: 0.7;
-    }
-
     &__image {
       @extend .h-100;
-      background-image: asset-url("Home-Cover.jpg");
+      background-image: url('https://uc7b3df415a8c885f8cdacc6e8e3.dl.dropboxusercontent.com/cd/0/inline/Al5wTgMLny6d9OtdliOibRz7YiZkWbaIP77YfNQqP0PYDvXBnNA18xdsvTiTYwpVeomOh4L-xzXlyracutZy7-vgrE-wi1PyH3WUnxQlnTSI1w/file#');
       background-size: cover;
       background-position: center;
     }
+  }
+
+  &__heading {
+    color: #c6e2ff;
+    animation: neon .08s ease-in-out infinite alternate;
+    a { color: #c6e2ff; }
   }
 
   &__or {

@@ -1,0 +1,8 @@
+var registrationModalForm = $('.sign-up-modal-form');
+<% if resource.errors.any? %>
+registrationModalForm.on('ajax:success', function(e, data, status, xhr){
+  $(e.currentTarget).html("<%= escape_javascript render 'people/shared/sign_up_modal_form' %>");
+})
+<% else %>
+Turbolinks.visit("<%= root_path %>");
+<% end %>

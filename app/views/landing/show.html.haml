@@ -2,11 +2,14 @@
 %header(class="stick-top")
   %nav(class="navbar navbar-expand-lg navbar--landing")
     .container
-      %a(href="/" class="navbar-brand w-lg-25 w-md-40 w-60 font-size-5") Mr.Draper
+      %a(href="/" class="navbar-brand glow w-lg-25 w-md-40 w-60 font-size-5") Mr.Draper
       .justify-content-end
         %ul.navbar-nav
           %li.nav-item
-            %a(href="#" class="nav-link text-white font-weight-light") Login
+            - if person_signed_in?
+              = link_to 'Sign Out', destroy_person_session_path, method: :delete, class: 'nav-link text-white font-weight-light'
+            - else
+              %a(href="#" class="nav-link text-white font-weight-light" data-toggle="modal" data-target="#signInModal" data-controller="sign-in-modal-opener" data-sign-in-modal-opener-tab-name="sign_in_tab") Login
 
   // Landing Intro
   .landing-intro
@@ -14,9 +17,10 @@
       %div(class="landing-intro__cover__layer")
       %div(class="landing-intro__cover__image")
     .container
+      = render 'layouts/components/messages', wrapper_class: 'landing-intro__flash-messages'
       %div(class="space-6")
       .landing-intro__center
-        %h1(class="mb-5 landing-intro__heading")
+        %h1(class="mb-5 glow landing-intro__heading")
           %a(href="#" class="text-decoration-none")
             Write your first Story
         .row
@@ -26,10 +30,13 @@
               = form_tag '#', method: :get, class: 'landing-intro__form w-100' do
                 = text_field_tag :q, nil, class: 'form-control form-control-lg rounded-0', placeholder: "Explore, how world is writing there experience"
       .landing-intro__bottom
-        %button(class="btn btn-primary btn-lg landing-intro__sign-up-button" data-toggle="modal"
-        data-target="#signInModal")
-          Register Now
+        - unless person_signed_in?
+          %button(class="btn btn-primary btn-lg landing-intro__sign-up-button" data-toggle="modal" data-target="#signInModal" data-controller="sign-in-modal-opener" data-sign-in-modal-opener-tab-name="sign_up_tab")
+            Register Now
         %p(class="landing-intro__cover-text")
           Share your amazing
           %strong Experience
           with the world
+
+
+= render 'people/shared/modal'

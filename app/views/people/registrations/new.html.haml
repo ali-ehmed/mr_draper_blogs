@@ -1,0 +1,20 @@
+= render layout: 'people/shared/registration_layout', locals: { title: 'Sign Up' } do
+  = form_with(model: resource, as: resource_name, url: registration_path(resource_name), local: true) do |f|
+    %h3(class="text-white mb-4 border-bottom pb-2") Create a New Account
+    .form-group
+      = f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control #{form_input_error(resource, :name)}", placeholder: 'Name'
+      = form_group_error_message(resource, :name)
+    .form-group
+      = f.email_field :email, autocomplete: "email", class: "form-control #{form_input_error(resource, :email)}", placeholder: 'Email'
+      = form_group_error_message(resource, :email)
+    .form-group
+      = f.password_field :password, autocomplete: "password", class: "form-control #{form_input_error(resource, :password)}", placeholder: 'Password'
+      = form_group_error_message(resource, :password)
+    .form-group
+      = f.password_field :password_confirmation, autocomplete: "password_confirmation", class: "form-control #{form_input_error(resource, :password_confirmation)}", placeholder: 'Password'
+      = form_group_error_message(resource, :password_confirmation)
+    .form-group
+      = f.submit "SIGN UP", class: 'btn btn-primary btn-block'
+    .text-center
+      = link_to 'Already have an account? Login', new_person_session_path, class: 'text-info text-decoration-none'
+

@@ -1,13 +1,21 @@
+@import "variables";
+
 // Bootstrap
 @import "bootstrap_variables";
 @import 'bootstrap_framework';
 
 @import "main";
 
+@mixin wall-background() {
+  background-image: url('Wall.jpg');
+}
+
 // Pages
-@import "pages/home";
+@import "pages/landing";
+@import "pages/onboarding";
 
 // Components
 @import "components/animations";
 @import "components/navbar";
 @import "components/search_form";
+@import "components/sign_in_modal";

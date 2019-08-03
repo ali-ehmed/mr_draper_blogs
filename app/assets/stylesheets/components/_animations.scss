@@ -1,3 +1,4 @@
+// Text Animations
 @keyframes neon {
   from {
     text-shadow:
@@ -16,5 +17,19 @@
             0 0 22px rgba(30,132,242,0.84),
             0 0 38px rgba(30,132,242,0.88),
             0 0 60px rgba(30,132,242,1);
+  }
+}
+
+// Fade In
+.fade-scale {
+  transform: scale(0);
+  opacity: 0;
+  -webkit-transition: all .25s linear;
+  -o-transition: all .25s linear;
+  transition: all .25s linear;
+
+  &.show {
+    opacity: 1;
+    transform: scale(1);
   }
 }

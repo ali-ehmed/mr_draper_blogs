@@ -1,0 +1,12 @@
+= form_with(model: resource, as: resource_name, url: session_path(resource_name), local: true) do |f|
+  %div(class="input-group mb-3")
+    .input-group-prepend
+      %span(class="input-group-text sign-in-modal__input-group")
+        %i(class="fas fa-user")
+    = f.text_field :email, autofocus: true, class: 'form-control sign-in-modal__form-field', placeholder: 'Email/Username', id: nil
+  %div(class="input-group mb-3")
+    .input-group-prepend
+      %span(class="input-group-text sign-in-modal__input-group")
+        %i(class="fas fa-lock")
+    = f.password_field :password, class: 'form-control sign-in-modal__form-field', placeholder: 'Password', id: nil
+  = f.submit 'LOGIN', class: 'btn btn-outline-primary btn-block'

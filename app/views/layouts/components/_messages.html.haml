@@ -1,7 +1,8 @@
-.my-4
-  - flash.each do |name, msg|
+- wrapper_class ||= nil
+- flash.each do |name, msg|
+  .position-relative
     - if msg.is_a?(String) && name.in?(flash_messages_alerts)
-      %div(id="flash_messages" class="alert alert-dismissible alert-#{flash_alert_type(name)}")
+      %div(id="flash_messages" class="alert alert-dismissible alert-#{flash_alert_type(name)} #{wrapper_class}")
         %button(type="button" class="close" data-dismiss="alert" aria-hidden="true")
           &times;
         = content_tag :div, msg.html_safe, id: "flash_#{name}"

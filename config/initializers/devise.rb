@@ -12,7 +12,7 @@ Devise.setup do |config|
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
-  # config.parent_controller = 'DeviseController'
+  config.parent_controller = 'People::DeviseController'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -251,7 +251,7 @@ Devise.setup do |config|
   # should add them to the navigational formats lists.
   #
   # The "*/*" below is required to match Internet Explorer requests.
-  # config.navigational_formats = ['*/*', :html]
+  config.navigational_formats = ['*/*', :html, :json]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
@@ -260,6 +260,15 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
+
+  config.omniauth :facebook, Rails.application.credentials.facebook_app_id, Rails.application.credentials.facebook_app_secret,
+                  scope: 'public_profile,email'
+
+  config.omniauth :google_oauth2, Rails.application.credentials.google_oauth2_client_id, Rails.application.credentials.google_oauth2_secret,
+                  scope: 'userinfo.email, userinfo.profile',
+                  prompt: 'select_account',
+                  image_aspect_ratio: 'square',
+                  image_size: 50
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

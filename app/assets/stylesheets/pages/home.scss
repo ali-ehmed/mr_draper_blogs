@@ -16,6 +16,12 @@
     }
   }
 
+  &__flash-messages {
+    position: absolute;
+    width: 100%;
+    top: 7rem;
+  }
+
   &__heading {
     color: $landing-intro-heading-color;
     a { color: $landing-intro-heading-color; }

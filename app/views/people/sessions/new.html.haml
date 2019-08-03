@@ -1,5 +1,5 @@
 = render layout: 'people/shared/registration_layout', locals: { title: 'Sign In' } do
-  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  = form_with(model: resource, as: resource_name, url: session_path(resource_name)) do |f|
     = render 'layouts/components/messages'
     %h3(class="text-white mb-4 border-bottom pb-2") Sign In
     .form-group

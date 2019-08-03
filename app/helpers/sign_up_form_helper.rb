@@ -29,7 +29,7 @@ module SignUpFormHelper
     tag.div(class: wrapper_class) do
       capture do
         concat(
-          link_to('#', class: "btn btn-fb btn-block #{link_class}") do
+          link_to(person_facebook_omniauth_authorize_path, class: "btn btn-fb btn-block #{link_class}") do
             capture do
               concat(content_tag(:i, nil, class: 'fab fa-facebook-f mr-2'))
               concat(content_tag(:span, 'LOGIN WITH FACEBOOK'))
@@ -37,7 +37,7 @@ module SignUpFormHelper
           end
         )
         concat(
-          link_to('#', class: "btn btn-google btn-block #{link_class}") do
+          link_to(person_google_oauth2_omniauth_authorize_path, class: "btn btn-google btn-block #{link_class}") do
             capture do
               concat(content_tag(:i, nil, class: 'fab fa-google mr-2'))
               concat(content_tag(:span, 'LOGIN WITH GOOGLE'))

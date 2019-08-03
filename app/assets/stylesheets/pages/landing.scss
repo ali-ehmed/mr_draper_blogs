@@ -24,7 +24,10 @@
 
   &__heading {
     color: $landing-intro-heading-color;
-    a { color: $landing-intro-heading-color; }
+    a {
+      color: $landing-intro-heading-color;
+      font-weight: 900;
+    }
   }
 
   &__or {

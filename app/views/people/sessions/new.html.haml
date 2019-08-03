@@ -1,0 +1,12 @@
+= render layout: 'people/shared/registration_layout', locals: { title: 'Sign In' } do
+  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    = render 'layouts/components/messages'
+    %h3(class="text-white mb-4 border-bottom pb-2") Sign In
+    .form-group
+      = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: 'Email'
+    .form-group
+      = f.password_field :password, autocomplete: "current-password", class: 'form-control', placeholder: 'Password'
+    .form-group
+      = f.submit "SIGN IN", class: 'btn btn-primary btn-block'
+    .text-center
+      = link_to 'Create New Account', new_person_registration_path, class: 'text-info text-decoration-none'

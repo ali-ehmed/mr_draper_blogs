@@ -4,8 +4,15 @@
 @import "bootstrap_variables";
 @import 'bootstrap_framework';
 
+@import "main";
+
+@mixin wall-background() {
+  background-image: url('https://uc7b3df415a8c885f8cdacc6e8e3.dl.dropboxusercontent.com/cd/0/inline/Al5wTgMLny6d9OtdliOibRz7YiZkWbaIP77YfNQqP0PYDvXBnNA18xdsvTiTYwpVeomOh4L-xzXlyracutZy7-vgrE-wi1PyH3WUnxQlnTSI1w/file#');
+}
+
 // Pages
 @import "pages/home";
+@import "pages/onboarding";
 
 // Components
 @import "components/animations";

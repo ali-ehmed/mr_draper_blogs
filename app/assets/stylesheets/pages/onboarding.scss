@@ -1,0 +1,30 @@
+.onboarding {
+  @include wall-background();
+  &__cover {
+    min-height: 100vh;
+    background-image: asset-url('Onboarding-Cover.jpg');
+    background-position-x: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  &__form {
+    min-height: 100vh;
+    padding: 8rem 2rem 0 2rem;
+    &--sign-in {
+      padding: 14rem 2rem 0 2rem;
+    }
+    &--sign-up {
+      padding: 10rem 2rem 0 2rem;
+    }
+    form {
+      margin: 0 auto;
+      max-width: 80%;
+      @include media-breakpoint-down(md) {
+        max-width: 100%;
+      }
+    }
+
+    position: relative;
+  }
+}

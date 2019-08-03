@@ -14,10 +14,4 @@ module SessionHelper
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:person]
   end
-  
-  def render_registrations_layout(title)
-    render layout: 'people/shared/registration_layout', locals: { title: title } do
-      yield
-    end
-  end
 end

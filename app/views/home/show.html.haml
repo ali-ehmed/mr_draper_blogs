@@ -6,7 +6,7 @@
       .justify-content-end
         %ul.navbar-nav
           %li.nav-item
-            %a(href="#" class="nav-link text-white font-weight-light") Login
+            %a(href="#" class="nav-link text-white font-weight-light" data-toggle="modal" data-target="#signInModal" data-controller="sign-in-modal-opener" data-sign-in-modal-opener-tab-name="sign_in_tab") Login
 
   // Landing Intro
   .landing-intro
@@ -26,10 +26,12 @@
               = form_tag '#', method: :get, class: 'landing-intro__form w-100' do
                 = text_field_tag :q, nil, class: 'form-control form-control-lg rounded-0', placeholder: "Explore, how world is writing there experience"
       .landing-intro__bottom
-        %button(class="btn btn-primary btn-lg landing-intro__sign-up-button" data-toggle="modal"
-        data-target="#signInModal")
+        %button(class="btn btn-primary btn-lg landing-intro__sign-up-button" data-toggle="modal" data-target="#signInModal" data-controller="sign-in-modal-opener" data-sign-in-modal-opener-tab-name="sign_up_tab")
           Register Now
         %p(class="landing-intro__cover-text")
           Share your amazing
           %strong Experience
           with the world
+
+
+= render 'people/shared/modal'

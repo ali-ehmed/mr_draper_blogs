@@ -1,0 +1,58 @@
+<div class="modal fade sign-in-modal" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="signInModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="sign-in-modal__layer"></div>
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <%= sign_in_form_tabs(order: %i[sign_up sign_in], wrapper_class: 'mb-5') %>
+        <div class="tab-content">
+          <%= sign_in_form_tab_pane(tab_name: :sign_up, active: true) do %>
+            <div class="sign-in-modal__heading mb-4">
+              <h5 class="sign-in-modal__heading__title" id="signInModalLabel">
+                Sign up now
+              </h5>
+              <span class="sign-in-modal__heading__help-text">Already have an account? <a href="#" data-controller="sign-in-modal-opener" data-sign-in-modal-opener-tab-name="sign_in_tab">Sign In</a></span>
+            </div>
+
+            <%= sign_in_modal_form_social_links(wrapper_class: 'sign-in-modal__social-buttons mb-4') %>
+
+            <div class="sign-in-modal__divider mb-4">
+              <span class="sign-in-modal__divider-text">OR</span>
+              <span class="sign-in-modal__divider-text-space"></span>
+            </div>
+
+            <div class="sign-in-modal__registrations-form mb-4">
+              <%= render 'people/shared/sign_up_modal_form' %>
+            </div>
+          <% end %>
+
+          <%= sign_in_form_tab_pane(tab_name: :sign_in) do %>
+            <div class="sign-in-modal__heading mb-4">
+              <h5 class="sign-in-modal__heading__title" id="signInModalLabel">
+                Login to your account
+              </h5>
+              <span class="sign-in-modal__heading__help-text">Do not have an account? <a href="#" data-controller="sign-in-modal-opener" data-sign-in-modal-opener-tab-name="sign_up_tab">Sign Up</a></span>
+            </div>
+
+            <%= sign_in_modal_form_social_links(wrapper_class: 'sign-in-modal__social-buttons mb-4') %>
+
+            <div class="sign-in-modal__divider mb-4">
+              <span class="sign-in-modal__divider-text">OR</span>
+              <span class="sign-in-modal__divider-text-space"></span>
+            </div>
+            <div class="sign-in-modal__form-wrapper mb-4">
+              <div class="sign-in-modal__login-form mb-2">
+                <%= render 'people/shared/sign_in_modal_form' %>
+              </div>
+
+              <a href="#" class="text-white sign-in-modal__forgot-password">FORGOT YOUR PASSWORD?</a>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>

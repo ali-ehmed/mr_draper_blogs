@@ -9,3 +9,13 @@
 .navbar-brand {
   animation: neon .08s ease-in-out infinite alternate;
 }
+
+.btn-fb {
+  color: $white;
+  background-color: $facebook-bg-color;
+}
+
+.btn-google {
+  color: $white;
+  background-color: $google-bg-color;
+}

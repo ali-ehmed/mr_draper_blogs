@@ -1,8 +1,8 @@
+@import "variables";
+
 // Bootstrap
 @import "bootstrap_variables";
 @import 'bootstrap_framework';
-
-@import "main";
 
 // Pages
 @import "pages/home";
@@ -11,3 +11,4 @@
 @import "components/animations";
 @import "components/navbar";
 @import "components/search_form";
+@import "components/sign_in_modal";

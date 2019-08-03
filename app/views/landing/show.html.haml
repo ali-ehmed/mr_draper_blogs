@@ -5,11 +5,25 @@
       %a(href="/" class="navbar-brand glow w-lg-25 w-md-40 w-60 font-size-5") Mr.Draper
       .justify-content-end
         %ul.navbar-nav
-          %li.nav-item
-            - if person_signed_in?
-              = link_to 'Sign Out', destroy_person_session_path, method: :delete, class: 'nav-link text-white font-weight-light'
-            - else
+          - if person_signed_in?
+            %li.nav-item.dropdown
+              %a(href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+                = image_tag current_person.gravatar_url(rating: 'R', secure: true, size: 30), class: 'img-fluid rounded-circle'
+              %div(class="dropdown-menu dropdown-menu-right animate slide-in")
+                .navbar__profile-details.px-3
+                  .d-flex
+                    = image_tag current_person.gravatar_url(rating: 'R', secure: true, size: 50), class: 'img-fluid rounded-circle'
+                    .pl-3
+                      %span.font-size-3
+                        = current_person.name
+                .dropdown-divider
+                = link_to 'My Profile', '#', class: 'dropdown-item font-size-1'
+                .dropdown-divider
+                = link_to 'Sign Out', destroy_person_session_path, method: :delete, class: 'dropdown-item font-size-1'
+          - else
+            %li.nav-item
               %a(href="#" class="nav-link text-white font-weight-light" data-toggle="modal" data-target="#signInModal" data-controller="sign-in-modal-opener" data-sign-in-modal-opener-tab-name="sign_in_tab") Login
+
 
   // Landing Intro
   .landing-intro

@@ -54,6 +54,9 @@ gem 'draper', '~> 3.0', '>= 3.0.1'
 # Use 'Haml-Rails' to use Haml over ERB.
 gem 'haml-rails', '~> 2.0', '>= 2.0.1'
 
+# Use 'Gravtastic', The super fantastic way of getting Gravatars.
+gem 'gravtastic', '~> 3.2.6'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

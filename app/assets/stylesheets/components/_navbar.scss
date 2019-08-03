@@ -1,6 +1,9 @@
 .navbar {
   li.nav-item a {
     transition: all 0.3s;
+    &:hover {
+      color: map_get($theme-colors, primary);
+    }
   }
 
   &--landing {
@@ -8,15 +11,9 @@
     top: 0;
     z-index: 9;
     width: 100%;
-
-    li.nav-item a:hover {
-      color: $gray-300;
-    }
   }
 
-  &--header {
-    li.nav-item a:hover {
-      color: $gray-700;
-    }
+  .dropdown-menu {
+    width: 200px;
   }
 }

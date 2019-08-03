@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  short_description: MyString
+  main_content: MyText
+  person: one
+
+two:
+  title: MyString
+  short_description: MyString
+  main_content: MyText
+  person: two

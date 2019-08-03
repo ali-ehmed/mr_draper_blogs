@@ -26,7 +26,7 @@
     }
 
     .modal-body {
-      padding: 2.5rem 5rem;
+      padding: 2rem 5rem;
     }
 
     @include media-breakpoint-only(xs) {
@@ -83,7 +83,7 @@
 
     &-text-space {
       padding: 0 25px;
-      border-bottom: 1px solid map_get($theme-colors, primary);
+      border-bottom: 1px solid $black;
       @extend .position-absolute;
       margin: -1px 0 0 0;
       left: 45%;

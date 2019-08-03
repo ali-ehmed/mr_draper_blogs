@@ -10,10 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_03_164501) do
+ActiveRecord::Schema.define(version: 2019_08_03_224239) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+# Could not dump table "blogs" because of following StandardError
+#   Unknown type 'blog_status' for column 'status'
 
   create_table "people", force: :cascade do |t|
     t.string "email", default: "", null: false

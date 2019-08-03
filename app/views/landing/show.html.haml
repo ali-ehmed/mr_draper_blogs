@@ -35,8 +35,8 @@
       %div(class="space-6")
       .landing-intro__center
         %h1(class="mb-5 glow landing-intro__heading")
-          %a(href="#" class="text-decoration-none")
-            Write your first Story
+          = link_to new_blog_path, class: 'text-decoration-none' do
+            Write your first Blog
         .row
           %div(class="offset-3 col align-self-end")
             .d-flex

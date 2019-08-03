@@ -13,8 +13,10 @@
     .form-group
       = f.password_field :password_confirmation, autocomplete: "password_confirmation", class: "form-control #{form_input_error(resource, :password_confirmation)}", placeholder: 'Password'
       = form_group_error_message(resource, :password_confirmation)
-    .form-group
+    .form-group.border-bottom.pb-4
       = f.submit "SIGN UP", class: 'btn btn-primary btn-block'
+    .mt-4
+      = sign_in_modal_form_social_links(wrapper_class: 'sign-in-modal__social-buttons mb-4')
     .text-center
       = link_to 'Already have an account? Login', new_person_session_path, class: 'text-info text-decoration-none'
 

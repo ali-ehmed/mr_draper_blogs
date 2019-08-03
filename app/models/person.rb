@@ -8,6 +8,7 @@ class Person < ApplicationRecord
 
   # Association Macros
   #
+  has_many :blogs, foreign_key: :author_id
 
   # Scope Macros
   #

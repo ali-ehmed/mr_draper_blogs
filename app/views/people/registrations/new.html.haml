@@ -1,5 +1,5 @@
 = render layout: 'people/shared/registration_layout', locals: { title: 'Sign Up' } do
-  = form_with(model: resource, as: resource_name, url: registration_path(resource_name)) do |f|
+  = form_with(model: resource, as: resource_name, url: registration_path(resource_name), local: true) do |f|
     %h3(class="text-white mb-4 border-bottom pb-2") Create a New Account
     .form-group
       = f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control #{form_input_error(resource, :name)}", placeholder: 'Name'

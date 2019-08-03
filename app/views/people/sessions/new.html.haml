@@ -1,6 +1,6 @@
 = render layout: 'people/shared/registration_layout', locals: { title: 'Sign In' } do
-  = form_with(model: resource, as: resource_name, url: session_path(resource_name)) do |f|
-    = render 'layouts/components/messages'
+  = form_with(model: resource, as: resource_name, url: session_path(resource_name), local: true) do |f|
+    = render 'layouts/components/messages', wrapper_class: 'mb-5'
     %h3(class="text-white mb-4 border-bottom pb-2") Sign In
     .form-group
       = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: 'Email'

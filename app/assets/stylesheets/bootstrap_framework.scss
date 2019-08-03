@@ -4,3 +4,8 @@
 
 // Custom Theme build from https://themestr.app/
 @import "theme";
+
+// App wide customization
+.navbar-brand {
+  animation: neon .08s ease-in-out infinite alternate;
+}

@@ -1,0 +1,58 @@
+/********** Bootstrap Variables **********/
+
+// Theme Colors Override
+$theme-colors: (
+        primary:      #19183C,
+        secondary:    #707070,
+        dark:         #10045c,
+        success:      #05F590,
+        warning:      #FC7917,
+        danger:       #E74C3C,
+        light:        #c4c4c4
+);
+
+// Custom Additional Sizes
+$sizes: (
+        10: 10%,
+        15: 15%,
+        20: 20%,
+  // 25: 25%, Already in Bootstrap
+        30: 30%,
+        35: 35%,
+        40: 40%,
+        45: 45%,
+  // 50: 50%, Already in Bootstrap
+        55: 55%,
+        60: 60%,
+        65: 65%,
+        70: 70%,
+  // 75: 75%, Already in Bootstrap
+        80: 80%,
+        85: 85%,
+        90: 90%,
+        95: 95%,
+  // 100: 100%, Already in Bootstrap
+);
+
+// Custom Space Sizes
+$space-sizes: (
+        1: 5rem,
+        2: 7rem,
+        3: 10rem,
+        4: 12rem,
+        5: 15rem,
+        6: 18rem,
+        7: 20rem
+);
+
+// Custom Font Sizes
+$font-sizes: (
+        1: 0.75rem,
+        2: 1rem,
+        3: 1.25rem,
+        4: 1.5rem,
+        5: 2rem,
+        6: 2.25rem,
+        7: 2.5rem,
+        8: 3rem
+);

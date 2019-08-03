@@ -1,0 +1,22 @@
+.navbar {
+  li.nav-item a {
+    transition: all 0.3s;
+  }
+
+  &--landing {
+    position: absolute;
+    top: 0;
+    z-index: 9;
+    width: 100%;
+
+    li.nav-item a:hover {
+      color: $gray-300;
+    }
+  }
+
+  &--header {
+    li.nav-item a:hover {
+      color: $gray-700;
+    }
+  }
+}

@@ -1,0 +1,70 @@
+.landing-intro {
+  @extend .min-vh-100;
+  @extend .position-relative;
+
+  &__cover {
+    @extend .h-100;
+    @extend .w-100;
+    @extend .position-absolute;
+    z-index: -1;
+
+    &__image {
+      @extend .h-100;
+      background-image: url('https://uc7b3df415a8c885f8cdacc6e8e3.dl.dropboxusercontent.com/cd/0/inline/Al5wTgMLny6d9OtdliOibRz7YiZkWbaIP77YfNQqP0PYDvXBnNA18xdsvTiTYwpVeomOh4L-xzXlyracutZy7-vgrE-wi1PyH3WUnxQlnTSI1w/file#');
+      background-size: cover;
+      background-position: center;
+    }
+  }
+
+  &__heading {
+    color: #c6e2ff;
+    animation: neon .08s ease-in-out infinite alternate;
+    a { color: #c6e2ff; }
+  }
+
+  &__or {
+    padding-right: 2rem;
+    line-height: 3.5rem;
+    font-size: 4rem;
+  }
+
+  &__form {
+    input, input:hover, input:focus {
+      background-color: transparent;
+      border: none;
+      box-shadow: none;
+      caret-color: $white;
+      border-bottom: 1px solid $white;
+      color: $white;
+    }
+  }
+
+  &__text {
+    @extend .text-white;
+    margin-top: 15px;
+  }
+
+  &__bottom {
+    @extend .container;
+    @extend .position-absolute;
+    bottom: 10%;
+  }
+
+  &__sign-up-button {
+    padding: 0.5rem 1.5rem;
+    font-size: 1.2rem;
+  }
+
+  &__cover-text {
+    @extend .float-right;
+    @extend .text-white;
+    margin-top: 1.5rem;
+    margin-bottom: 0;
+  }
+
+  @include media-breakpoint-only(xs) {
+    &__bottom {
+      width: auto;
+    }
+  }
+}

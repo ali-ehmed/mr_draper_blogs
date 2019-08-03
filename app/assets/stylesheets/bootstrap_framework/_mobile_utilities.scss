@@ -1,0 +1,44 @@
+// Responsive Width and Height
+@include media-breakpoint-up(sm) {
+  @each $prop, $abbrev in (width: w, height: h) {
+    @each $size, $length in $sizes {
+      .#{$abbrev}-sm-#{$size} { #{$prop}: $length !important; }
+    }
+
+    .#{$abbrev}-sm-inherit { #{$prop}: inherit !important; }
+    .#{$abbrev}-sm-auto { #{$prop}: auto !important; }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  @each $prop, $abbrev in (width: w, height: h) {
+    @each $size, $length in $sizes {
+      .#{$abbrev}-md-#{$size} { #{$prop}: $length !important; }
+    }
+
+    .#{$abbrev}-md-inherit { #{$prop}: inherit !important; }
+    .#{$abbrev}-md-auto { #{$prop}: auto !important; }
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  @each $prop, $abbrev in (width: w, height: h) {
+    @each $size, $length in $sizes {
+      .#{$abbrev}-lg-#{$size} { #{$prop}: $length !important; }
+    }
+
+    .#{$abbrev}-lg-inherit { #{$prop}: inherit !important; }
+    .#{$abbrev}-lg-auto { #{$prop}: auto !important; }
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  @each $prop, $abbrev in (width: w, height: h) {
+    @each $size, $length in $sizes {
+      .#{$abbrev}-xl-#{$size} { #{$prop}: $length !important; }
+    }
+
+    .#{$abbrev}-xl-inherit { #{$prop}: inherit !important; }
+    .#{$abbrev}-xl-auto { #{$prop}: auto !important; }
+  }
+}

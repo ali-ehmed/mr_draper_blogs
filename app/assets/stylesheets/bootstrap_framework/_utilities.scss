@@ -1,0 +1,9 @@
+@each $prop, $abbrev in (height: "space") {
+  @each $size, $length in $space-sizes {
+    .#{$abbrev}-#{$size} { #{$prop}: $length !important; }
+  }
+}
+
+@each $size, $length in $font-sizes {
+  .font-size-#{$size} { font-size: $length !important; }
+}

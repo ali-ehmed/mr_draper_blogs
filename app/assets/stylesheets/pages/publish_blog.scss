@@ -1,0 +1,16 @@
+.publish-blog {
+  &__preview-img-holder{
+    padding: 5rem;
+  }
+
+  &__invalid-attr {
+    .publish-blog__label {
+      color: map_get($theme-colors, danger);
+      border-bottom-color: map_get($theme-colors, danger) !important;
+    }
+  }
+
+  &__schedule-form-wrapper {
+    @include material-style-text-input($color: $gray-600, $border-color: $gray-500, $placeholder-color: $gray-400);
+  }
+}

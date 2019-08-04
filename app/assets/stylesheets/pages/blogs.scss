@@ -7,6 +7,12 @@
 }
 
 .blog {
+  &__main-content {
+    img {
+      @extend .img-fluid;
+    }
+  }
+
   &--new {
     form {
       @include material-style-text-input($color: $gray-600, $border-color: $gray-500, $placeholder-color: $gray-400);

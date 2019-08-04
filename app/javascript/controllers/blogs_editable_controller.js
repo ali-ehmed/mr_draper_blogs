@@ -12,13 +12,17 @@ export default class extends Controller {
     
     // Submit Form after user finish typing
     for(let input of [this.titleInputTarget, this.shortDescriptionInputTarget]) {
-      input.addEventListener('blur', () => {
-        this.submitForm();
+      input.addEventListener('blur', (e) => {
+        let value = e.currentTarget.value;
+        if (!!value)
+          this.submitForm();
       })
     }
     // Use Custom Event of Medium Text Editor for Form Submission
-    editor.subscribe('blur', () => {
-      this.submitForm();
+    editor.subscribe('blur', (mouseEvent, editor) => {
+      let value = editor.innerText;
+      if (!!value)
+        this.submitForm();
     });
   }
   

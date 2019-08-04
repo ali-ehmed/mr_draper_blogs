@@ -1,1 +1,5 @@
 en:
+  blogs:
+    publish:
+      scheduled: "Your blog has been scheduled to publish on %{scheduled_at}."
+      published: "Your blog has been published successfully."

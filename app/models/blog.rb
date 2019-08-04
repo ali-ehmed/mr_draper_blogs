@@ -28,10 +28,16 @@ class Blog < ApplicationRecord
   after_initialize do
     self.status = self.class.statuses[:draft] if new_record?
   end
+
   # Class Methods
   #
 
   # Instance Methods
+  #
+  def schedule_for_later(scheduled_at)
+    update(status: self.class.statuses[:scheduled], scheduled_at: DateTime.parse(scheduled_at))
+    ScheduleBlogJob.set(wait_until: DateTime.parse(scheduled_at)).perform_later(id)
+  end
 
   protected
 

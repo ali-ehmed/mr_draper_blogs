@@ -1,6 +1,5 @@
 module People
   class BlogsController < ApplicationController
-    before_action :authenticate_person!
     before_action :set_blog, only: %i[show edit update destroy]
     respond_to :js, only: %i[create update]
 
@@ -16,11 +15,16 @@ module People
 
     def create
       @blog = current_person.blogs.build(blog_params)
-      redirect_to edit_blog_path(@blog.id) if @blog.save
+      redirect_to edit_people_blog_path(@blog.id) if @blog.save
     end
 
     def update
-      redirect_to edit_blog_path(@blog.id) if @blog.update_attributes(blog_params)
+      redirect_to edit_people_blog_path(@blog.id) if @blog.update_attributes(blog_params)
+    end
+
+    def destroy
+      @blog.destroy
+      redirect_to people_blogs_path, alert: "#{@blog.after_destroy_title} has be deleted."
     end
 
     private

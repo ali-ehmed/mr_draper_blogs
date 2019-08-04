@@ -6,20 +6,7 @@
       .justify-content-end
         %ul.navbar-nav
           - if person_signed_in?
-            %li.nav-item.dropdown
-              %a(href="#" class="nav-link dropdown-toggle navbar__profile-dropdown p-0" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
-                = image_tag current_person.gravatar_url(rating: 'R', secure: true, size: 150), class: 'img-fluid rounded-circle'
-              %div(class="dropdown-menu dropdown-menu-right animate slide-in")
-                .navbar__profile-details.px-3
-                  .d-flex
-                    = image_tag current_person.gravatar_url(rating: 'R', secure: true, size: 150), class: 'img-fluid rounded-circle'
-                    .pl-3
-                      %span.font-size-3
-                        = current_person.name
-                .dropdown-divider
-                = link_to 'My Profile', '#', class: 'dropdown-item font-size-1'
-                .dropdown-divider
-                = link_to 'Sign Out', destroy_person_session_path, method: :delete, class: 'dropdown-item font-size-1'
+            = render 'layouts/components/signed_in_profile_dropdown'
           - else
             %li.nav-item
               %a(href="#" class="nav-link text-white font-weight-light" data-toggle="modal" data-target="#signInModal" data-controller="sign-in-modal-opener" data-sign-in-modal-opener-tab-name="sign_in_tab") Login
@@ -35,8 +22,8 @@
       %div(class="space-6")
       .landing-intro__center
         %h1(class="mb-5 glow landing-intro__heading")
-          = link_to new_blog_path, class: 'text-decoration-none' do
-            Write your first Blog
+          = link_to new_people_blog_path, class: 'text-decoration-none' do
+            Let's write something amazing
         .row
           %div(class="offset-3 col align-self-end")
             .d-flex

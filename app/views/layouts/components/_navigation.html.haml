@@ -12,20 +12,7 @@
         - if content_for?(:right_navigation_list)
           = yield(:right_navigation_list)
         - if person_signed_in?
-          %li.nav-item.dropdown
-            %a(href="#" class="nav-link dropdown-toggle navbar__profile-dropdown p-0" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
-              = current_person.gravatar_image_tag
-            %div(class="dropdown-menu dropdown-menu-right animate slide-in")
-              .navbar__profile-details.px-3
-                .d-flex
-                  = current_person.gravatar_image_tag
-                  .pl-3
-                    %span.font-size-3
-                      = current_person.name
-              .dropdown-divider
-              = link_to 'My Profile', '#', class: 'dropdown-item font-size-1'
-              .dropdown-divider
-              = link_to 'Sign Out', destroy_person_session_path, method: :delete, class: 'dropdown-item font-size-1'
+          = render 'layouts/components/signed_in_profile_dropdown'
         - else
           %li.nav-item
             = link_to 'Login', new_person_session_path, class: 'nav-link text-white font-weight-light'

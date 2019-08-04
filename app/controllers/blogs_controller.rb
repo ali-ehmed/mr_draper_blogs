@@ -1,7 +1,5 @@
 class BlogsController < ApplicationController
-  before_action :authenticate_person!, only: %i[new create edit update destroy]
-
-  def new
-    @blog = current_person.blogs.build.decorate
+  def show
+    @blog = Blog.published.find(params[:id])
   end
 end

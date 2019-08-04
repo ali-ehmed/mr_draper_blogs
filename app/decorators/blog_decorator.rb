@@ -12,8 +12,10 @@ class BlogDecorator < ApplicationDecorator
   def blog_editable_statuses
     h.capture do
       h.concat(h.content_tag(:span, 'Draft', class: 'nav-link text-warning font-weight-bold'))
-      h.concat(h.content_tag(:span, '|', class: 'nav-link'))
-      h.concat(h.content_tag(:span, 'Saved', class: 'nav-link text-light'))
+      if object.persisted?
+        h.concat(h.content_tag(:span, '|', class: 'nav-link'))
+        h.concat(h.content_tag(:span, 'Saved', class: 'nav-link text-light'))
+      end
     end
   end
 end

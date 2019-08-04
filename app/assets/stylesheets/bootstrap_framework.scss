@@ -15,3 +15,16 @@
   color: $white;
   background-color: $google-bg-color;
 }
+
+.custom-tabs {
+  border-bottom: none;
+  a {
+    border: none;
+
+    &.active, &:hover {
+      background-color: transparent !important;
+      border: 0;
+      border-bottom: 2px solid map_get($theme-colors, light);
+    }
+  }
+}

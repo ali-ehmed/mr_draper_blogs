@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  rescue_from ActiveRecord::RecordNotFound, with: -> { handle_http_exception(:not_found) }
+
   # Helpers
   #
 
@@ -19,6 +21,15 @@ class ApplicationController < ActionController::Base
 
   def current_person
     PersonDecorator.decorate(super) unless super.nil?
+  end
+
+  def handle_http_exception(status = :not_found, message = 'Resource Not Found', js_partial: nil)
+    respond_to do |format|
+      format.html do
+        redirect_to root_path, alert: message
+      end
+      format.json { render json: { message: message, status: status }, status: status }
+    end
   end
 
   protected

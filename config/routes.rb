@@ -2,8 +2,10 @@ Rails.application.routes.draw do
   # Devise
   devise_for :people, controllers: { omniauth_callbacks: 'people/omniauth_callbacks' }
 
-  # Blogs
-  resources :blogs
+  namespace :people do
+    # Blogs
+    resources :blogs
+  end
 
   # Landing Page
   get '/landing' => 'landing#show'

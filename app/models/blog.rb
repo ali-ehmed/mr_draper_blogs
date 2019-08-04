@@ -11,6 +11,7 @@ class Blog < ApplicationRecord
   
   # Scope Macros
   #
+  scope :latest, -> { order('created_at DESC') }
 
   # Attributes
   #
@@ -21,11 +22,12 @@ class Blog < ApplicationRecord
 
   # Validation Macros
   #
-  validates_presence_of :title, :main_content
 
   # Callbacks
   #
-
+  after_initialize do
+    self.status = self.class.statuses[:draft] if new_record?
+  end
   # Class Methods
   #
 

@@ -16,6 +16,7 @@
 // const imagePath = (name) => images(name, true)
 
 import 'bootstrap';
+import '../../../vendor/assets/javascripts/data-confirm-modal';
 import "controllers";
 
 // Turbolinks

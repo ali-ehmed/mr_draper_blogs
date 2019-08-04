@@ -1,5 +1,5 @@
 .navbar {
-  li.nav-item a {
+  li.nav-item a.nav-link {
     transition: all 0.3s;
     &:hover {
       color: map_get($theme-colors, primary);
@@ -11,6 +11,28 @@
     top: 0;
     z-index: 9;
     width: 100%;
+  }
+
+  &--header {
+    .dropdown-toggler:after {
+      color: $gray-200;
+    }
+
+    li.nav-item a.nav-link {
+      color: $gray-200 !important;
+    }
+  }
+
+  &__profile-dropdown {
+    img {
+      height: 30px;
+    }
+  }
+
+  &__profile-details {
+    img {
+      height: 50px;
+    }
   }
 
   .dropdown-menu {

@@ -13,4 +13,6 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application'
   %body
-    = yield
+    = render 'layouts/components/navigation' if @layout_header
+    %main(class="#{@layout_header ? 'mt-5 pt-5' : ''}")
+      = yield

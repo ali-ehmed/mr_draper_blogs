@@ -4,15 +4,37 @@
 @import "bootstrap_variables";
 @import 'bootstrap_framework';
 
+// Vendors
+@import "medium-editor/dist/css/medium-editor";
+@import "medium-editor/dist/css/themes/beagle";
+
 @import "main";
 
+// Mixins
 @mixin wall-background() {
   background-image: url('Wall.jpg');
+}
+
+@mixin material-style-text-input($color: $white, $border-color: $white, $placeholder-color: $white) {
+  input, input:hover, input:focus, textarea, textarea:hover, textarea:focus {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    caret-color: $border-color;
+    border-bottom: 1px solid $border-color;
+    color: $color;
+    border-radius: 0;
+
+    &::placeholder {
+      color: $placeholder-color;
+    }
+  }
 }
 
 // Pages
 @import "pages/landing";
 @import "pages/onboarding";
+@import "pages/blogs";
 
 // Components
 @import "components/animations";

@@ -1,0 +1,39 @@
+.blog-ready-button {
+  margin-right: 15px;
+  a {
+    @extend .btn;
+    @extend .btn-success;
+  }
+}
+
+.blog {
+  &--new {
+    form {
+      @include material-style-text-input($color: $gray-600, $border-color: $gray-500, $placeholder-color: $gray-400);
+
+      input, input:hover, input:focus { border: none; }
+
+      textarea {
+        resize: none;
+        overflow: hidden;
+      }
+
+      .medium-editor-element, .medium-editor-element:focus {
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+        caret-color: $border-color;
+        color: $gray-600;
+        border-radius: 0;
+        outline: none;
+      }
+
+      .medium-editor-placeholder {
+        &::after {
+          color: $gray-400;
+          font-style: normal;
+        }
+      }
+    }
+  }
+}

@@ -15,11 +15,14 @@
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-console.log('Hello World from Webpacker')
-
 import 'bootstrap';
 import "controllers";
 
 // Turbolinks
 import Turbolinks from "turbolinks";
 Turbolinks.start();
+
+// JS
+document.addEventListener('turbolinks:load', () => {
+  $('[data-toggle="tooltip"]').tooltip();
+});

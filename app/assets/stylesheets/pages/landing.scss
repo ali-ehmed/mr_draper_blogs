@@ -37,14 +37,7 @@
   }
 
   &__form {
-    input, input:hover, input:focus {
-      background-color: transparent;
-      border: none;
-      box-shadow: none;
-      caret-color: $white;
-      border-bottom: 1px solid $white;
-      color: $white;
-    }
+    @include material-style-text-input();
   }
 
   &__text {

@@ -7,12 +7,12 @@
         %ul.navbar-nav
           - if person_signed_in?
             %li.nav-item.dropdown
-              %a(href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
-                = image_tag current_person.gravatar_url(rating: 'R', secure: true, size: 30), class: 'img-fluid rounded-circle'
+              %a(href="#" class="nav-link dropdown-toggle navbar__profile-dropdown p-0" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+                = image_tag current_person.gravatar_url(rating: 'R', secure: true, size: 150), class: 'img-fluid rounded-circle'
               %div(class="dropdown-menu dropdown-menu-right animate slide-in")
                 .navbar__profile-details.px-3
                   .d-flex
-                    = image_tag current_person.gravatar_url(rating: 'R', secure: true, size: 50), class: 'img-fluid rounded-circle'
+                    = image_tag current_person.gravatar_url(rating: 'R', secure: true, size: 150), class: 'img-fluid rounded-circle'
                     .pl-3
                       %span.font-size-3
                         = current_person.name
@@ -42,7 +42,7 @@
             .d-flex
               %span(class="text-primary landing-intro__or") Or
               = form_tag '#', method: :get, class: 'landing-intro__form w-100' do
-                = text_field_tag :q, nil, class: 'form-control form-control-lg rounded-0', placeholder: "Explore, how world is writing there experience"
+                = text_field_tag :q, nil, class: 'form-control form-control-lg rounded-0', placeholder: "Explore People and How they are writing their Experience"
       .landing-intro__bottom
         - unless person_signed_in?
           %button(class="btn btn-primary btn-lg landing-intro__sign-up-button" data-toggle="modal" data-target="#signInModal" data-controller="sign-in-modal-opener" data-sign-in-modal-opener-tab-name="sign_up_tab")

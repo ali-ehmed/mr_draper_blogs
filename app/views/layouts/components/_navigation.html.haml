@@ -1,40 +1,32 @@
-%header(class='app-header app-header-dark')
-  .top-bar
-    .top-bar-brand
-      = link_to root_path do
-        = image_tag 'Hingeto-Header-Logo.png', style: 'height: 32px;width: auto;'
+%nav(class="navbar navbar--header fixed-top navbar-expand-lg navbar-light bg-primary ")
+  .container
+    %a(href="/" class="navbar-brand glow text-white") Mr.Draper
+    %button(class="navbar-toggler" type="button" data-toggle="collapse" data-target="#applicationNavbar" aria-controls="applicationNavbar" aria-expanded="false" aria-label="Toggle navigation")
+      %span(class="navbar-toggler-icon")
+    %div(class="collapse navbar-collapse" id="applicationNavbar")
+      %ul.navbar-nav.mr-auto
+        - if content_for?(:left_navigation_list)
+          = yield(:left_navigation_list)
 
-    .top-bar-list
-      %div(class='top-bar-item px-2 d-md-none d-lg-none d-xl-none')
-        %button(class='hamburger hamburger-squeeze' type='button' data-toggle='aside' aria-label="toggle menu")
-          %span(class="hamburger-box")
-            %span(class="hamburger-inner")
+      %ul.navbar-nav.ml-auto
+        - if content_for?(:right_navigation_list)
+          = yield(:right_navigation_list)
+        - if person_signed_in?
+          %li.nav-item.dropdown
+            %a(href="#" class="nav-link dropdown-toggle navbar__profile-dropdown p-0" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+              = current_person.gravatar_image_tag
+            %div(class="dropdown-menu dropdown-menu-right animate slide-in")
+              .navbar__profile-details.px-3
+                .d-flex
+                  = current_person.gravatar_image_tag
+                  .pl-3
+                    %span.font-size-3
+                      = current_person.name
+              .dropdown-divider
+              = link_to 'My Profile', '#', class: 'dropdown-item font-size-1'
+              .dropdown-divider
+              = link_to 'Sign Out', destroy_person_session_path, method: :delete, class: 'dropdown-item font-size-1'
+        - else
+          %li.nav-item
+            = link_to 'Login', new_person_session_path, class: 'nav-link text-white font-weight-light'
 
-      .top-bar-item.top-bar-item-full
-        %form(class='top-bar-search')
-          .input-group.input-group-search
-            %div(class="input-group-prepend")
-              %span(class="input-group-text")
-                %span(class="oi oi-magnifying-glass")
-
-            = text_field_tag :q, nil, class: 'form-control', placeholder: "Search #{opposite_business_category.pluralize}", data: { controller: 'autocomplete', autocomplete_url: businesses_path, autocomplete_visit_url: available_to_sell_url(current_user.business_category.downcase)}
-
-      %div(class="top-bar-item top-bar-item-right px-0 d-none d-sm-flex")
-        -# Right Corner Dropdown
-        .dropdown
-          %button(class="btn-account d-none d-md-flex" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
-            %span(class="account-summary pr-lg-4 d-none d-lg-block")
-              %span(class="account-name")= current_user.name
-              %span(class="account-description")
-                = current_user.business_name
-                |
-                %span(class="badge badge-subtle badge-success")= current_user.business_category
-
-          -# Divider
-          %div(class="dropdown-arrow dropdown-arrow-left")
-
-          %div(class="dropdown-menu")
-            %h6(class="dropdown-header d-none d-md-block d-lg-none")= current_user.name
-            = link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do
-              %span(class="dropdown-icon oi oi-account-logout")
-              Logout

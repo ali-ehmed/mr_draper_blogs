@@ -1,0 +1,20 @@
+= content_for(:left_navigation_list) do
+  %li.nav-item
+    .blog-editable-status.d-flex
+      = @blog.blog_editable_statuses
+
+= content_for(:right_navigation_list) do
+  %li.nav-item.blog-ready-button.mb-xl-0.mb-2
+    = @blog.ready_to_publish_button
+
+.container
+  .blog.blog--new
+    .row
+      .offset-2.col-8
+        = form_with(model: @blog, data: { controller: 'blogs-editable' }) do |f|
+          .form-group
+            = f.text_field :title, class: 'form-control form-control-lg font-size-5 px-2', placeholder: 'Title', data: { target: 'blogs-editable.titleInput' }
+          .form-group.mb-5
+            = f.text_field :short_description, class: 'form-control', placeholder: 'Write a Short Description', data: { target: 'blogs-editable.shortDescriptionInput' }
+          .form-group
+            = f.text_area :main_content, class: 'form-control', placeholder: 'Main Content', data: { target: 'blogs-editable.mainContentInput' }

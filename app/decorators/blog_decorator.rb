@@ -1,7 +1,9 @@
 class BlogDecorator < ApplicationDecorator
   delegate_all
 
-  def ready_to_publish_button()
+  def ready_to_publish_button
+    return unless object.draft?
+
     tooltip_options = {}
     url             = '#'
     if object.persisted?
@@ -14,7 +16,7 @@ class BlogDecorator < ApplicationDecorator
 
   def blog_editable_statuses
     h.capture do
-      h.concat(h.content_tag(:span, 'Draft', class: 'nav-link text-warning font-weight-bold'))
+      h.concat(h.content_tag(:span, object.status.titleize, class: "nav-link #{status_class} font-weight-bold"))
       if object.persisted?
         h.concat(h.content_tag(:span, '|', class: 'nav-link'))
         h.concat(h.content_tag(:span, 'Saved', class: 'nav-link text-light'))
@@ -29,6 +31,15 @@ class BlogDecorator < ApplicationDecorator
       'Draft Blog'
     else
       'Blog'
+    end
+  end
+
+  def status_class
+    case status
+      when object.class.statuses[:draft]
+        'text-warning'
+      else
+        'text-light'
     end
   end
 end

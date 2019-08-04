@@ -22,7 +22,7 @@
             %h4.publish-blog__label.border-bottom.pb-2
               Short Description
               = @publish_blog.attribute_error(:short_description)
-            %p= @blog.title
+            %p= @blog.short_description
           %div(class="mb-5 #{@publish_blog.attribute_error_class(:main_content)}")
             %h4.publish-blog__label.border-bottom.pb-2.mb-5
               Main Content

@@ -15,11 +15,21 @@ module People
 
     def create
       @blog = current_person.blogs.build(blog_params)
-      redirect_to edit_people_blog_path(@blog.id) if @blog.save
+      respond_to do |format|
+        if @blog.save
+          format.html { redirect_to edit_people_blog_path(@blog.id) }
+          format.json { render json: { redirect: edit_people_blog_path(@blog.id) } }
+        end
+      end
     end
 
     def update
-      redirect_to edit_people_blog_path(@blog.id) if @blog.update_attributes(blog_params)
+      respond_to do |format|
+        if @blog.update(blog_params)
+          format.html { redirect_to edit_people_blog_path(@blog.id) }
+          format.json { head :ok }
+        end
+      end
     end
 
     def destroy

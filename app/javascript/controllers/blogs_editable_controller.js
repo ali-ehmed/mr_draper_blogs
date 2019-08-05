@@ -1,6 +1,7 @@
 import { Controller } from "stimulus"
 import MediumEditor from "medium-editor/dist/js/medium-editor.js";
 import Rails from "rails-ujs";
+import Turbolinks from "turbolinks";
 
 export default class extends Controller {
   static targets = ["titleInput", "shortDescriptionInput", "mainContentInput"];
@@ -16,14 +17,14 @@ export default class extends Controller {
       input.addEventListener('blur', (e) => {
         let value = e.currentTarget.value;
         if (!!value)
-          this.submitForm();
+          this.submitForm($(this.element).serialize());
       })
     }
     // Use Custom Event of Medium Text Editor for Form Submission
     editor.subscribe('blur', (mouseEvent, editor) => {
       let value = editor.innerText;
       if (!!value)
-        this.submitForm();
+        this.submitForm($(this.element).serialize());
     });
   }
   
@@ -36,8 +37,16 @@ export default class extends Controller {
     });
   }
 
-  submitForm() {
-    this.element.querySelector('input[type="submit"]').click();
+  submitForm(formData) {
+    Rails.ajax({
+      type: this.element.dataset.method,
+      url: this.element.action,
+      data: formData,
+      success: (response) => {
+        if (response && response.redirect)
+          Turbolinks.visit(response.redirect);
+      }
+    });
   }
 
   browseFileForPreview(e) {
@@ -58,7 +67,7 @@ export default class extends Controller {
       $(imageTag).attr('src', e.target.result);
     };
 
-    if (e.currentTarget.href !== '#') {
+    if (e.currentTarget.href.indexOf('#') <= 0) {
       Rails.ajax({
         type: 'DELETE',
         url: e.currentTarget.href,
@@ -69,6 +78,13 @@ export default class extends Controller {
     } else {
       clearPreview();
     }
+  }
+  
+  uploadPreviewImage() {
+    let fileInput = document.querySelector('.blog__preview-img-file-input');
+    let formData  = new FormData();
+    formData.append("blog[preview_image]", fileInput.files[0]);
+    this.submitForm(formData);
   }
 
   displayPreviewImage(e) {
@@ -86,7 +102,8 @@ export default class extends Controller {
     
       reader.readAsDataURL(input.files[0]);
   
-      this.submitForm();
+      // Upload Preview Image after Display
+      this.uploadPreviewImage();
     }
   }
 

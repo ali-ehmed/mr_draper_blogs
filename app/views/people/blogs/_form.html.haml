@@ -11,7 +11,7 @@
   .blog.blog--new.mt-md-0.mt-4
     .row
       .offset-md-2.col-md-8.offset-0.col-12
-        = form_with(model: @blog, url: url, data: { controller: 'blogs-editable' }) do |f|
+        = form_with(model: @blog, url: url, data: { controller: 'blogs-editable', method: form_method }) do |f|
           = link_to '#', class: 'blog__preview-img-upload-icon text-decoration-none', data: { action: 'blogs-editable#browseFileForPreview', toggle: 'tooltip', placement: 'right', title: 'Upload Preview Image' } do
             %i(class='fas fa-plus')
           = f.file_field :preview_image, accept: 'image/png,image/gif,image/jpeg', class: 'd-none blog__preview-img-file-input', data: { action: 'change->blogs-editable#displayPreviewImage' }

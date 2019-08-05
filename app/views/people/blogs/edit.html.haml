@@ -1,2 +1,2 @@
 = content_for(:title, "Edit | #{@blog.title}")
-= render 'form', url: people_blog_path(@blog)
+= render 'form', url: people_blog_path(@blog, format: :json), form_method: :put

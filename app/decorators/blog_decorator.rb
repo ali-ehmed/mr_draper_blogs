@@ -56,7 +56,6 @@ class BlogDecorator < ApplicationDecorator
       end
     end
   end
-
   def purge_preview_image_url
     return '#' unless object.preview_image.attached?
 

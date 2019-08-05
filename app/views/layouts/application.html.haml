@@ -15,6 +15,7 @@
   %body
     = render 'layouts/components/navigation' if @layout_header
     %main(class="#{@layout_header ? 'mt-5 pt-5' : ''}")
-      .container
-        = render 'layouts/components/messages', wrapper_class: 'mb-5'
+      - if @layout_header
+        .container
+          = render 'layouts/components/messages', wrapper_class: 'mb-5'
       = yield

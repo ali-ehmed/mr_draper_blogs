@@ -11,7 +11,7 @@
           .mb-5
             %h4.border-bottom.pb-2.mb-3 Blog Preview Image
             - if @publish_blog.preview_image.attached?
-              = image_tag 'Onboarding-Cover.jpg', class: 'img-fluid rounded .publish-blog__preview-img'
+              = image_tag rails_blob_path(@publish_blog.preview_image), class: 'img-fluid rounded .publish-blog__preview-img'
             - else
               .publish-blog__preview-img-placeholder.bg-light.rounded
                 %span Include a high-quality image in your Blog to make it more inviting to readers.

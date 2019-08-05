@@ -45,7 +45,7 @@ class BlogDecorator < ApplicationDecorator
 
   def display_form_preview_image
     show = object.preview_image.attached?
-    h.content_tag :div, class: "blog__display-preview-img-holder #{!show ? 'd-none' : ''}" do
+    h.content_tag :div, class: "blog__display-preview-img-holder #{!show ? 'd-none' : 'mb-4'}" do
       h.capture do
         h.concat(
           h.link_to(purge_preview_image_url, class: 'form-group blog__preview-img-remove-icon text-decoration-none', data: { action: 'blogs-editable#removeFileForPreview' }) do

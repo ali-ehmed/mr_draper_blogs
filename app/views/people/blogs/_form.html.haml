@@ -8,10 +8,16 @@
     = @blog.ready_to_publish_button
 
 .container
-  .blog.blog--new
+  .blog.blog--new.mt-md-0.mt-4
     .row
-      .offset-2.col-8
+      .offset-md-2.col-md-8.offset-0.col-12
         = form_with(model: @blog, url: url, data: { controller: 'blogs-editable' }) do |f|
+          = link_to '#', class: 'blog__preview-img-upload-icon text-decoration-none', data: { action: 'blogs-editable#browseFileForPreview', toggle: 'tooltip', placement: 'right', title: 'Upload Preview Image' } do
+            %i(class='fas fa-plus')
+          = f.file_field :preview_image, accept: 'image/png,image/gif,image/jpeg', class: 'd-none blog__preview-img-file-input', data: { action: 'change->blogs-editable#displayPreviewImage' }
+
+          = @blog.display_form_preview_image
+
           .form-group
             = f.text_field :title, class: 'form-control form-control-lg font-size-5 px-2', placeholder: 'Title', data: { target: 'blogs-editable.titleInput' }
           .form-group.mb-5

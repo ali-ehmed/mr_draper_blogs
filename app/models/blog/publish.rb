@@ -35,3 +35,23 @@ class Blog::Publish < Blog
 
   private
 end
+
+# == Schema Information
+#
+# Table name: blogs
+#
+#  id                :bigint(8)        not null, primary key
+#  main_content      :text
+#  published_at      :datetime
+#  scheduled_at      :datetime
+#  short_description :string
+#  status            :enum             not null
+#  title             :string
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  author_id         :integer
+#
+# Indexes
+#
+#  index_blogs_on_author_id  (author_id)
+#

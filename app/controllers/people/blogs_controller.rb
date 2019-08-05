@@ -34,7 +34,7 @@ module People
       end
 
       def blog_params
-        params.require(:blog).permit(:title, :short_description, :main_content)
+        params.require(:blog).permit(:title, :short_description, :main_content, :preview_image)
       end
   end
 end

@@ -40,6 +40,42 @@
           font-style: normal;
         }
       }
+
+      .blog__preview-img-upload-icon, .blog__preview-img-remove-icon {
+        color: map_get($theme-colors, dark);
+        position: absolute;
+        transition: all 0.3s;
+      }
+
+      .blog__preview-img-upload-icon {
+        font-size: 0.75rem;
+        border: 1px solid;
+        border-radius: 3rem;
+        padding: 0.1rem 0.35rem;
+        left: -35px;
+        top: 22px;
+
+        &:hover {
+          background-color: map_get($theme-colors, dark);
+          color: $white;
+        }
+
+        @include media-breakpoint-only(xs) {
+          left: 20px;
+          top: -35px;
+        }
+      }
+
+      .blog__preview-img-remove-icon {
+        font-size: 2rem;
+        right: -30px;
+        top: 5px;
+
+        @include media-breakpoint-only(xs) {
+          right: 10px;
+          top: -50px;
+        }
+      }
     }
   }
 }

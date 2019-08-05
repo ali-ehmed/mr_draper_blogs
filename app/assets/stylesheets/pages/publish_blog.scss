@@ -1,6 +1,18 @@
 .publish-blog {
-  &__preview-img-holder{
-    padding: 5rem;
+  &__preview-img-placeholder {
+    height: 350px;
+    position: relative;
+    span {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      top: 42%;
+      padding: 0 3rem;
+    }
+  }
+
+  &__preview-img {
+    height: 350px;
   }
 
   &__invalid-attr {

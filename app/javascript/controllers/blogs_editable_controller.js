@@ -1,5 +1,6 @@
 import { Controller } from "stimulus"
 import MediumEditor from "medium-editor/dist/js/medium-editor.js";
+import Rails from "rails-ujs";
 
 export default class extends Controller {
   static targets = ["titleInput", "shortDescriptionInput", "mainContentInput"];
@@ -38,7 +39,57 @@ export default class extends Controller {
   submitForm() {
     this.element.querySelector('input[type="submit"]').click();
   }
+
+  browseFileForPreview(e) {
+    e.preventDefault();
+    document.querySelector('.blog__preview-img-file-input').click();
+  }
+
+  removeFileForPreview(e) {
+    e.preventDefault();
+
+    const clearPreview = () => {
+      let fileInput                 = document.querySelector('.blog__preview-img-file-input');
+      let displayPreviewImageHolder = document.querySelector('.blog__display-preview-img-holder');
+      let imageTag                  = displayPreviewImageHolder.querySelector('img');
+
+      fileInput.value = '';
+      displayPreviewImageHolder.classList.add('d-none');
+      $(imageTag).attr('src', e.target.result);
+    };
+
+    if (e.currentTarget.href !== '#') {
+      Rails.ajax({
+        type: 'DELETE',
+        url: e.currentTarget.href,
+        success: (data, status, xhr) => {
+          clearPreview();
+        }
+      });
+    } else {
+      clearPreview();
+    }
+  }
+
+  displayPreviewImage(e) {
+    let input                     = e.srcElement;
+    let displayPreviewImageHolder = document.querySelector('.blog__display-preview-img-holder');
+
+    if (input.files && input.files[0]) {
+      let reader = new FileReader();
+    
+      reader.onload = (e) => {
+        displayPreviewImageHolder.classList.remove('d-none');
+        let imageTag = displayPreviewImageHolder.querySelector('img');
+        $(imageTag).attr('src', e.target.result);
+      };
+    
+      reader.readAsDataURL(input.files[0]);
   
+      this.submitForm();
+    }
+  }
+
   get editorOptions() {
     return {
       placeholder: {

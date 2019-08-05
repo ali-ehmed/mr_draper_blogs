@@ -8,7 +8,8 @@ class Blog < ApplicationRecord
   # Association Macros
   #
   belongs_to :author, class_name: Person.name, foreign_key: :author_id
-  
+  has_one_attached :preview_image
+
   # Scope Macros
   #
   scope :latest, -> { order('created_at DESC') }

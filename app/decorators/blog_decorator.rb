@@ -42,4 +42,24 @@ class BlogDecorator < ApplicationDecorator
         'text-light'
     end
   end
+
+  def display_form_preview_image
+    show = object.preview_image.attached?
+    h.content_tag :div, class: "blog__display-preview-img-holder #{!show ? 'd-none' : ''}" do
+      h.capture do
+        h.concat(
+          h.link_to(purge_preview_image_url, class: 'form-group blog__preview-img-remove-icon text-decoration-none', data: { action: 'blogs-editable#removeFileForPreview' }) do
+            h.content_tag(:span, "&times;".html_safe)
+          end
+        )
+        h.concat(h.image_tag(show ? h.rails_blob_path(object.preview_image) : '', class: 'img-fluid'))
+      end
+    end
+  end
+
+  def purge_preview_image_url
+    return '#' unless object.preview_image.attached?
+
+    h.attachment_path(object.preview_image.id, format: :json)
+  end
 end

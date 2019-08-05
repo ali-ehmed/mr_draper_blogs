@@ -7,12 +7,15 @@
         = link_to edit_people_blog_path(@blog), class: 'font-size-5 text-muted text-decoration-none' do
           %span(aria-hidden="true") &times;
       .row
-        .col-md-7
+        .col-md-6.order-md-first.order-last
           .mb-5
             %h4.border-bottom.pb-2.mb-3 Blog Preview Image
-            .bg-light.rounded.publish-blog__preview-img-holder.text-center
-              %span
-                Include a high-quality image in your Blog to make it more inviting to readers.
+            - if @publish_blog.preview_image.attached?
+              = image_tag 'Onboarding-Cover.jpg', class: 'img-fluid rounded .publish-blog__preview-img'
+            - else
+              .publish-blog__preview-img-placeholder.bg-light.rounded
+                %span Include a high-quality image in your Blog to make it more inviting to readers.
+
           %div(class="mb-5 #{@publish_blog.attribute_error_class(:title)}")
             %h4.publish-blog__label.border-bottom.pb-2
               Title
@@ -29,7 +32,7 @@
               = @publish_blog.attribute_error(:main_content)
             .blog__main-content
               = @blog.main_content.html_safe
-        .col-md-5
+        .offset-md-1.offset-0.col-md-5.mb-md-0.mb-5
           .form-group.mb-5
             = label_tag 'Add or change tags (up to 5) so readers know what your blog is about', nil, class: 'font-size-1'
             = text_field_tag :tags, nil, class: 'form-control rounded-0', placeholder: 'Add a tag...'

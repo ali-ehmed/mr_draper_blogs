@@ -14,6 +14,9 @@ Rails.application.routes.draw do
     end
   end
 
+  # Active Storage Attachment
+  resources :attachments, only: %i[destroy]
+
   # Landing Page
   get '/landing' => 'landing#show'
 

@@ -18,4 +18,4 @@
           %h6.mb-0= @blog.author.name
           %span.text-muted.font-size-1
             = @blog.display_published_at
-      = @blog.main_content.html_safe
+      = @blog.main_content&.html_safe

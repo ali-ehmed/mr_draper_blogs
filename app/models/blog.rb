@@ -30,19 +30,27 @@ class Blog < ApplicationRecord
   after_initialize do
     self.status = self.class.statuses[:draft] if new_record?
   end
+  before_save :clear_main_content
 
   # Class Methods
   #
 
   # Instance Methods
   #
-  def schedule_for_later(scheduled_at)
-    update(status: self.class.statuses[:scheduled], published_at: DateTime.parse(scheduled_at))
-    ScheduleBlogJob.set(wait_until: DateTime.parse(scheduled_at)).perform_later(id)
+  def schedule_for_later(published_at)
+    update(status: self.class.statuses[:scheduled], published_at: DateTime.parse(published_at))
+    ScheduleBlogJob.set(wait_until: self.published_at).perform_later(id)
   end
 
   def publish
     update(status: self.class.statuses[:published], published_at: DateTime.now)
+  end
+
+  def clear_main_content
+    if main_content.present?
+      fragments = Nokogiri::HTML::DocumentFragment.parse(main_content)
+      self.main_content = nil if fragments.children.children[0].name == 'br'
+    end
   end
 
   protected

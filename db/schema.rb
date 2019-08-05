@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_05_072821) do
+ActiveRecord::Schema.define(version: 2019_08_05_104659) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,8 +50,16 @@ ActiveRecord::Schema.define(version: 2019_08_05_072821) do
     t.string "name"
     t.string "provider", limit: 50, default: "", null: false
     t.string "uid", limit: 500, default: "", null: false
+    t.string "cellphone"
+    t.string "country_code"
+    t.string "authy_id"
+    t.datetime "last_sign_in_with_authy"
+    t.boolean "authy_enabled", default: false
+    t.string "username"
+    t.index ["authy_id"], name: "index_people_on_authy_id"
     t.index ["email"], name: "index_people_on_email", unique: true
     t.index ["reset_password_token"], name: "index_people_on_reset_password_token", unique: true
+    t.index ["username"], name: "index_people_on_username", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

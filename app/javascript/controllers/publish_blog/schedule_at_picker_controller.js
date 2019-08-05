@@ -8,7 +8,8 @@ export default class extends Controller {
       minDate: 'today',
       defaultDate: "today",
       time_24hr: false,
-      dateFormat: "Y-m-d h:i K"
+      dateFormat: "Y-m-d h:i K",
+      minuteIncrement: '1'
     });
   }
 }

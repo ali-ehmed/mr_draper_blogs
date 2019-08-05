@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  # Sidekiq
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
+
   # Devise
   devise_for :people, controllers: { omniauth_callbacks: 'people/omniauth_callbacks' }
 
@@ -22,6 +26,11 @@ Rails.application.routes.draw do
 
   # Landing Page
   get '/landing' => 'landing#show'
+
+  # Settings
+  resource :settings, only: %i[update]
+  # Profile
+  get '/:username' => 'profile#show', as: :profile
 
   # Root
   root to: 'landing#show'

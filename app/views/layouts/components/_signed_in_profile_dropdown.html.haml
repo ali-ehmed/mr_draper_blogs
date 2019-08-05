@@ -12,6 +12,6 @@
     = link_to 'Write a New Blog', new_people_blog_path, class: 'dropdown-item font-size-1'
     = link_to 'My Blog Posts', people_blogs_path, class: 'dropdown-item font-size-1'
     .dropdown-divider
-    = link_to 'My Profile', '#', class: 'dropdown-item font-size-1'
+    = link_to 'My Profile', profile_path(current_person.username), class: 'dropdown-item font-size-1'
     .dropdown-divider
     = link_to 'Sign Out', destroy_person_session_path, method: :delete, class: 'dropdown-item font-size-1'

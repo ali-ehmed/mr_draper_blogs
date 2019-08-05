@@ -1,0 +1,23 @@
+= form_for(person, as: resource_name, url: settings_path(tab: 'edit_profile'), html: { method: :put }) do |f|
+  .form-group
+    = f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control #{form_input_error(person, :name)}", placeholder: 'Name'
+    = form_group_error_message(person, :name)
+  .form-group
+    = f.email_field :email, autocomplete: "email", class: "form-control #{form_input_error(person, :email)}", placeholder: 'Email'
+    = form_group_error_message(person, :email)
+  - if devise_mapping.confirmable? && person.pending_reconfirmation?
+    Currently waiting confirmation for:
+    = person.unconfirmed_email
+  .form-group
+    = f.password_field :password, autocomplete: "password", class: "form-control #{form_input_error(person, :password)}", placeholder: 'Password'
+    = form_group_error_message(person, :password)
+    - if @minimum_password_length
+      %em= @minimum_password_length
+      characters minimum
+    %small(class="form-text text-muted") leave blank if you don't want to change it
+  .form-group
+    = f.password_field :password_confirmation, autocomplete: "password_confirmation", class: "form-control #{form_input_error(person, :password_confirmation)}", placeholder: 'Password'
+    = form_group_error_message(person, :password_confirmation)
+
+  .form-group.border-bottom.pb-4
+    = f.submit 'Update', class: 'btn btn-primary'

@@ -4,4 +4,8 @@ class PersonDecorator < ApplicationDecorator
   def gravatar_image_tag(gravtar_options = {}, options = {})
     h.image_tag(object.gravatar_url(rating: 'R', secure: true, size: 150, **gravtar_options), class: 'img-fluid rounded-circle', **options)
   end
+
+  def current_person?
+    object.id == h.current_person&.id
+  end
 end

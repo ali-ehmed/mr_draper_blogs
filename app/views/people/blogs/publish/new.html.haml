@@ -27,11 +27,11 @@
               = @publish_blog.attribute_error(:short_description)
             %p= @blog.short_description
           %div(class="mb-5 #{@publish_blog.attribute_error_class(:main_content)}")
-            %h4.publish-blog__label.border-bottom.pb-2.mb-5
+            %h4.publish-blog__label.border-bottom.pb-2
               Main Content
               = @publish_blog.attribute_error(:main_content)
             .blog__main-content
-              = @blog.main_content.html_safe
+              = @blog.main_content&.html_safe
         .offset-md-1.offset-0.col-md-5.mb-md-0.mb-5
           .form-group.mb-5
             = label_tag 'Add or change tags (up to 5) so readers know what your blog is about', nil, class: 'font-size-1'

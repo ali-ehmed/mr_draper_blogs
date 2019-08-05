@@ -1,5 +1,6 @@
 class BlogDecorator < ApplicationDecorator
   delegate_all
+  decorates_association :author
 
   def ready_to_publish_button
     return unless object.draft?
@@ -56,9 +57,14 @@ class BlogDecorator < ApplicationDecorator
       end
     end
   end
+
   def purge_preview_image_url
     return '#' unless object.preview_image.attached?
 
     h.attachment_path(object.preview_image.id, format: :json)
+  end
+
+  def display_published_at
+    object.published_at&.strftime('%d %B, %Y') || 'Published Date N/A'
   end
 end

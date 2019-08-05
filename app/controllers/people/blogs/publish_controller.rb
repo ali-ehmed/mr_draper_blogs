@@ -16,9 +16,9 @@ module People
       def create
         if publish_blog_params[:status] == Blog.statuses[:scheduled]
           @blog.schedule_for_later(publish_blog_params[:scheduled_at])
-          flash[:notice] = I18n.t('blogs.publish.scheduled', { scheduled_at: @blog.scheduled_at.strftime('%d %B, %Y at %I:%M %P') })
+          flash[:notice] = I18n.t('blogs.publish.scheduled', { scheduled_at: @blog.published_at.strftime('%d %B, %Y at %I:%M %P') })
         else
-          @blog.published!
+          @blog.publish
           flash[:notice] = I18n.t('blogs.publish.published')
         end
 

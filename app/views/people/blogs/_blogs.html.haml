@@ -1,15 +1,26 @@
 %li.list-group-item
   %h4
-    = blog.title.presence || '---'
+    - if scope == Blog.statuses[:draft]
+      %span(class="text-muted")
+        = blog.title.presence || '---'
+    - else
+      = link_to blog.title.presence, blog_path(blog.id), class: 'text-muted text-decoration-none'
 
   .font-size-1
     %span(class="text-muted")
-      Last Edited
-      = time_ago_in_words(blog.updated_at, include_seconds: true)
+      - if scope == Blog.statuses[:draft]
+        Last Edited
+        = time_ago_in_words(blog.updated_at, include_seconds: true)
+      - else
+        - if blog.published_at
+          Published At
+          = time_ago_in_words(blog.published_at, include_seconds: true)
+        - else
+          = '---'
     %span(class="text-muted") .
     %span(class="text-muted font-size-2 align-middle")
       = link_to '#', class: 'text-decoration-none', data: { toggle: 'dropdown', 'aria-haspopup': 'true', 'aria-expanded': 'false' } do
         %i(class="fas fa-angle-down")
       %div(class="dropdown-menu font-size-1")
-        = link_to "Edit #{scope.titleize}", edit_people_blog_path(blog), class: 'dropdown-item'
-        = link_to "Delete #{scope.titleize}", people_blog_path(blog), method: :delete, class: 'dropdown-item', data: { confirm: "Are you certain you want to Delete this #{scope.titleize} Blog?", commit: 'Yes!' }
+        = link_to "Edit #{scope.singularize.titleize}", edit_people_blog_path(blog), class: 'dropdown-item'
+        = link_to "Delete #{scope.singularize.titleize}", people_blog_path(blog, scope: scope), method: :delete, class: 'dropdown-item', data: { confirm: 'Are you certain you want to Delete this  Blog?', commit: 'Yes!' }

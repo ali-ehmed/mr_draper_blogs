@@ -34,7 +34,7 @@ module People
 
     def destroy
       @blog.destroy
-      redirect_to people_blogs_path, alert: "#{@blog.after_destroy_title} has be deleted."
+      redirect_to people_blogs_path, alert: "#{@blog.after_destroy_title} Blog has be deleted."
     end
 
     private

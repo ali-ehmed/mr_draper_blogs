@@ -14,6 +14,9 @@ Rails.application.routes.draw do
     end
   end
 
+  # Blogs
+  resources :blogs, only: %i[index show]
+
   # Active Storage Attachment
   resources :attachments, only: %i[destroy]
 

@@ -13,6 +13,7 @@ class Blog < ApplicationRecord
   # Scope Macros
   #
   scope :latest, -> { order('created_at DESC') }
+  scope :ready_to_publish_or_published, -> { where.not(status: statuses[:draft]) }
 
   # Attributes
   #
@@ -36,8 +37,12 @@ class Blog < ApplicationRecord
   # Instance Methods
   #
   def schedule_for_later(scheduled_at)
-    update(status: self.class.statuses[:scheduled], scheduled_at: DateTime.parse(scheduled_at))
+    update(status: self.class.statuses[:scheduled], published_at: DateTime.parse(scheduled_at))
     ScheduleBlogJob.set(wait_until: DateTime.parse(scheduled_at)).perform_later(id)
+  end
+
+  def publish
+    update(status: self.class.statuses[:published], published_at: DateTime.now)
   end
 
   protected

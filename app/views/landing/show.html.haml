@@ -6,20 +6,7 @@
       .justify-content-end
         %ul.navbar-nav
           - if person_signed_in?
-            %li.nav-item.dropdown
-              %a(href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
-                = image_tag current_person.gravatar_url(rating: 'R', secure: true, size: 30), class: 'img-fluid rounded-circle'
-              %div(class="dropdown-menu dropdown-menu-right animate slide-in")
-                .navbar__profile-details.px-3
-                  .d-flex
-                    = image_tag current_person.gravatar_url(rating: 'R', secure: true, size: 50), class: 'img-fluid rounded-circle'
-                    .pl-3
-                      %span.font-size-3
-                        = current_person.name
-                .dropdown-divider
-                = link_to 'My Profile', '#', class: 'dropdown-item font-size-1'
-                .dropdown-divider
-                = link_to 'Sign Out', destroy_person_session_path, method: :delete, class: 'dropdown-item font-size-1'
+            = render 'layouts/components/signed_in_profile_dropdown'
           - else
             %li.nav-item
               %a(href="#" class="nav-link text-white font-weight-light" data-toggle="modal" data-target="#signInModal" data-controller="sign-in-modal-opener" data-sign-in-modal-opener-tab-name="sign_in_tab") Login
@@ -35,14 +22,14 @@
       %div(class="space-6")
       .landing-intro__center
         %h1(class="mb-5 glow landing-intro__heading")
-          %a(href="#" class="text-decoration-none")
-            Write your first Story
+          = link_to new_people_blog_path, class: 'text-decoration-none' do
+            Let's write something amazing
         .row
           %div(class="offset-3 col align-self-end")
             .d-flex
               %span(class="text-primary landing-intro__or") Or
               = form_tag '#', method: :get, class: 'landing-intro__form w-100' do
-                = text_field_tag :q, nil, class: 'form-control form-control-lg rounded-0', placeholder: "Explore, how world is writing there experience"
+                = text_field_tag :q, nil, class: 'form-control form-control-lg rounded-0', placeholder: "Explore People and How they are writing their Experience"
       .landing-intro__bottom
         - unless person_signed_in?
           %button(class="btn btn-primary btn-lg landing-intro__sign-up-button" data-toggle="modal" data-target="#signInModal" data-controller="sign-in-modal-opener" data-sign-in-modal-opener-tab-name="sign_up_tab")

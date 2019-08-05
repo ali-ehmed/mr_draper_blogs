@@ -1,0 +1,43 @@
+= content_for(:title, "Publish #{@blog.title}")
+
+.publish-blog
+  .mt-5
+    .container
+      .mb-5.text-right
+        = link_to edit_people_blog_path(@blog), class: 'font-size-5 text-muted text-decoration-none' do
+          %span(aria-hidden="true") &times;
+      .row
+        .col-md-6.order-md-first.order-last
+          .mb-5
+            %h4.border-bottom.pb-2.mb-3 Blog Preview Image
+            - if @publish_blog.preview_image.attached?
+              = image_tag rails_blob_path(@publish_blog.preview_image), class: 'img-fluid rounded .publish-blog__preview-img'
+            - else
+              .publish-blog__preview-img-placeholder.bg-light.rounded
+                %span Include a high-quality image in your Blog to make it more inviting to readers.
+
+          %div(class="mb-5 #{@publish_blog.attribute_error_class(:title)}")
+            %h4.publish-blog__label.border-bottom.pb-2
+              Title
+              = @publish_blog.attribute_error(:title)
+            %p= @blog.title
+          %div(class="mb-5 #{@publish_blog.attribute_error_class(:short_description)}")
+            %h4.publish-blog__label.border-bottom.pb-2
+              Short Description
+              = @publish_blog.attribute_error(:short_description)
+            %p= @blog.short_description
+          %div(class="mb-5 #{@publish_blog.attribute_error_class(:main_content)}")
+            %h4.publish-blog__label.border-bottom.pb-2.mb-5
+              Main Content
+              = @publish_blog.attribute_error(:main_content)
+            .blog__main-content
+              = @blog.main_content.html_safe
+        .offset-md-1.offset-0.col-md-5.mb-md-0.mb-5
+          .form-group.mb-5
+            = label_tag 'Add or change tags (up to 5) so readers know what your blog is about', nil, class: 'font-size-1'
+            = text_field_tag :tags, nil, class: 'form-control rounded-0', placeholder: 'Add a tag...'
+          .publish-blog__schedule-form-wrapper.d-none
+          .publish-blog__form-wrapper
+            = form_tag people_blog_publish_path(@blog), method: :post do
+              = button_tag 'Publish Now', class: 'btn btn-success mr-3', disabled: !@publish_blog.valid?, data:  { disable_with: "<i class='fa fa-spinner fa-spin'></i> Publishing Blog.." }
+              = link_to 'Schedule for Later', schedule_for_later_people_blog_publish_path, class: 'text-muted text-decoration-none', remote: true, data: { controller: 'publish-blog--schedule-for-later', action: 'ajax:success->publish-blog--schedule-for-later#renderForm' }

@@ -1,0 +1,21 @@
+= content_for(:title, @blog.title)
+
+.container
+  .row
+    .offset-md-2.col-md-8.offset-0.col-12
+      - if @blog.preview_image.attached?
+        .mb-4
+          = image_tag rails_blob_path(@blog.preview_image), class: 'img-fluid'
+      %h2.mb-3= @blog.title
+      - if @blog.short_description.present?
+        %blockquote.blockquote
+          = @blog.short_description
+
+
+      .d-flex.mb-4
+        = @blog.author.gravatar_image_tag({}, { style: 'height: 40px;' })
+        .ml-3
+          %h6.mb-0= @blog.author.name
+          %span.text-muted.font-size-1
+            = @blog.display_published_at
+      = @blog.main_content.html_safe

@@ -1,3 +1,4 @@
+# This controller is responsible to Validate and Preview the Blog and Publish it.
 module People
   module Blogs
     class PublishController < ApplicationController
@@ -16,7 +17,7 @@ module People
       def create
         if publish_blog_params[:status] == Blog.statuses[:scheduled]
           @blog.schedule_for_later(publish_blog_params[:scheduled_at])
-          flash[:notice] = I18n.t('blogs.publish.scheduled', { scheduled_at: @blog.published_at.strftime('%d %B, %Y at %I:%M %P') })
+          flash[:notice] = I18n.t('blogs.publish.scheduled', { scheduled_at: I18n.l(@blog.published_at, format: :default) })
         else
           @blog.publish
           flash[:notice] = I18n.t('blogs.publish.published')

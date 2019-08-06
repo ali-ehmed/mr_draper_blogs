@@ -1,4 +1,5 @@
 class AttachmentsController < ApplicationController
+  # Removes the active storage attachment
   def destroy
     attachment = ActiveStorage::Attachment.find(params[:id])
     attachment.purge

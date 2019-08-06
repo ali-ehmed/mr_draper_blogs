@@ -1,3 +1,4 @@
+# Rake task to load the sample data
 namespace :sample_data do
   desc 'Loading Sample postgres database'
   task :load_db do

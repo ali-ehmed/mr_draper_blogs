@@ -49,6 +49,8 @@ class Blog < ApplicationRecord
     update(status: self.class.statuses[:published], published_at: DateTime.now)
   end
 
+  # Using rich editor in the form put an unnecessary HTML, when we clear the input.
+  # We have to make sure that when user empties the input we set the `main_content` attr nil
   def clear_main_content
     if main_content.present?
       fragments = Nokogiri::HTML::DocumentFragment.parse(main_content)

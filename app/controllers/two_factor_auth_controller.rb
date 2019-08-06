@@ -3,6 +3,7 @@ class TwoFactorAuthController < ApplicationController
     render layout: false
   end
 
+  # Verifies the token submitted from Form
   def verify
     authy = Authy::TwoFactorAuth.new(current_person, token: params[:token])
 
@@ -15,6 +16,7 @@ class TwoFactorAuthController < ApplicationController
     render json: { errors: e.message }
   end
 
+  # Requests Authy API to send the Token to user's device via SMS, Phone Call or OneTouch
   def request_auth_token
     authy = Authy::TwoFactorAuth.new(current_person, via: params[:via])
     authy.request_auth_token
@@ -28,6 +30,7 @@ class TwoFactorAuthController < ApplicationController
     render json: { errors: e.message }
   end
 
+  # This action is hit through polling, as polling is the recommended way by Authy API to check the Push Authentication approval status
   def onetouch_approval_status
     authy = Authy::TwoFactorAuth.new(current_person)
 

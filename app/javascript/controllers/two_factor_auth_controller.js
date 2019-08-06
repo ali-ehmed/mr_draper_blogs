@@ -1,8 +1,8 @@
 import { Controller } from "stimulus"
 import Rails from "rails-ujs";
 
+// Two-Factor Authentication controller
 export default class extends Controller {
-
   // Element which opens the Require Auth Modal
   get sourceElement() {
     return document.querySelector('[data-require_auth_source]');
@@ -67,7 +67,6 @@ export default class extends Controller {
 
   requireAuth(e) {
     let el = e.currentTarget;
-    console.log(el)
     
     // Return when Require 2AF is completed
     if (el.dataset.require_auth_completed === 'true') {

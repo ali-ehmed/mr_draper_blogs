@@ -2,6 +2,7 @@ import { Controller } from "stimulus"
 import '../../../vendor/assets/javascripts/jquery-flexdatalist/jquery.flexdatalist';
 import Turbolinks from "turbolinks";
 
+// Search Blogs
 export default class extends Controller {
   connect() {
     const defaultOptions = {

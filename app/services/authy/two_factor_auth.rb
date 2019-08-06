@@ -1,3 +1,5 @@
+# Twilio Authy Service
+#
 module Authy
   class TwoFactorAuthError < StandardError; end
 
@@ -34,6 +36,7 @@ module Authy
       __send__(VIA[via.to_sym])
     end
 
+    # Crate dynamic methods of request_sms and request_phone, as both carries the common code
     [VIA[:sms], VIA[:phone_call]].each do |via|
       define_method via do
         response = Authy::API.__send__(via.to_s, id: authy_id, force: true)

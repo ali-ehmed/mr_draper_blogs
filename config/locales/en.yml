@@ -3,3 +3,12 @@ en:
     publish:
       scheduled: "Your blog has been scheduled to publish on %{scheduled_at}."
       published: "Your blog has been published successfully."
+  date:
+    formats:
+      # Use the strftime parameters for formats.
+      # When no format has been given, it uses default.
+      # You can provide other formats here if you like!
+      default: "%d %B, %Y"
+  time:
+    formats:
+      default: "%d %B, %Y at %I:%M %P"

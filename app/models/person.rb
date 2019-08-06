@@ -36,6 +36,7 @@ class Person < ApplicationRecord
 
   # Class Methods
   #
+  # Create User from Omniauth Facebook/Google
   def self.from_omniauth(auth)
     user = find_or_initialize_by(uid: auth.uid, provider: auth.provider)
     user.name       = auth.info.name
@@ -47,33 +48,8 @@ class Person < ApplicationRecord
     user
   end
 
-  # if we need to copy data from session whenever a user is initialized before sign up
-  def self.new_with_session(params, session)
-    super.tap do |user|
-      provider      = session[:'devise.provider']
-      provider_data = session[:"devise.#{provider}_data"]
-      data = provider_data && provider_data['info']
-      if data
-        user.full_name = data['name']      if user.name.blank?
-        user.email     = data['email']     if user.email.blank?
-      end
-
-      session[:'devise.provider'] = nil
-    end
-  end
-
   # Instance Methods
   #
-  def register_to_authy_provider
-    authy = Authy::API.register_user(email: email, cellphone: cellphone, country_code: country_code)
-
-    if authy.ok?
-      self.authy_id = authy.id # this will give you the user authy id to store it in your database
-    else
-      authy.errors # this will return an error hash
-    end
-  end
-
   def create_username
     self.username = generate_username_from_email if username.blank?
   end
@@ -83,6 +59,7 @@ class Person < ApplicationRecord
     u.gsub('.', '-')
   end
 
+  # Register to Twilio Authy when cellphone and country_code are provided
   def enable_authy
     self.authy_enabled = cellphone.present? || country_code.present?
 

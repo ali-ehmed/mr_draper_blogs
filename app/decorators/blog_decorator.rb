@@ -25,6 +25,7 @@ class BlogDecorator < ApplicationDecorator
     end
   end
 
+  # When blog is destroy, we have to display the flash message in specific manner
   def after_destroy_title
     return object.title if object.title.present?
 
@@ -65,6 +66,6 @@ class BlogDecorator < ApplicationDecorator
   end
 
   def display_published_at
-    object.published_at&.strftime('%d %B, %Y') || 'Published Date N/A'
+    I18n.l(object.published_at.to_date, format: :default) || 'Published Date N/A'
   end
 end

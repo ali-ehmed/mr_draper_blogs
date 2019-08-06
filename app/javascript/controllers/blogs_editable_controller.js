@@ -3,6 +3,7 @@ import MediumEditor from "medium-editor/dist/js/medium-editor.js";
 import Rails from "rails-ujs";
 import Turbolinks from "turbolinks";
 
+// This stimulus controller is used on the Blog form page
 export default class extends Controller {
   static targets = ["titleInput", "shortDescriptionInput", "mainContentInput"];
 
@@ -38,6 +39,7 @@ export default class extends Controller {
     });
   }
 
+  // Submit form via ajax
   submitForm(formData) {
     Rails.ajax({
       type: this.element.dataset.method,
@@ -50,11 +52,13 @@ export default class extends Controller {
     });
   }
 
+  // Open file field
   browseFileForPreview(e) {
     e.preventDefault();
     document.querySelector('.blog__preview-img-file-input').click();
   }
 
+  // Remove File Preview from the Form
   removeFileForPreview(e) {
     e.preventDefault();
 
@@ -81,6 +85,7 @@ export default class extends Controller {
     }
   }
   
+  // Upload the file, as it requires FormData API to store the file and send to server
   uploadPreviewImage() {
     let fileInput = document.querySelector('.blog__preview-img-file-input');
     let formData  = new FormData();

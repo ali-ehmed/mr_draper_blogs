@@ -1,5 +1,6 @@
 import { Controller } from "stimulus"
 
+// Toggle Sign Up/Sign In tabs in  Sign up form modal
 export default class extends Controller {
   connect() {
     this.element.addEventListener('click', (e) => {

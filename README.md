@@ -1,7 +1,13 @@
 # Mr.Draper
 
 Simple blog application with oAuth enabled for user registration and login and integrate 2 factor
-authentication for posts. Integrate 2FA using Twillio Authy app & SMS.
+authentication for posts. Integrate 2FA using Twillio Authy app & SMS. 
+
+### Tools
+- [Ruby on Rails](https://rubyonrails.org/)
+- [Stimulus JS](https://stimulusjs.org/handbook/origin) (Javascript Framework)
+- [Twitter Bootstrap 4](https://getbootstrap.com/)
+- [Twilio Authy Service](https://www.twilio.com/authy)
 
 ### Setup App through Docker
 

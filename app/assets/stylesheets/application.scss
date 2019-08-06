@@ -8,6 +8,7 @@
 @import "medium-editor/dist/css/medium-editor";
 @import "medium-editor/dist/css/themes/beagle";
 @import "flatpickr/dist/flatpickr.min";
+@import "jquery-flexdatalist/jquery.flexdatalist";
 
 @import "main";
 
@@ -43,3 +44,4 @@
 @import "components/navbar";
 @import "components/search_form";
 @import "components/sign_in_modal";
+@import "components/flexdatalist_autocomplete_search";

@@ -1,0 +1,35 @@
+ul.flexdatalist-results {
+  max-height: 500px;
+  border-color: map_get($theme-colors, light) !important;
+
+  // Data list item
+  li.item {
+    .highlight {
+      text-decoration: none !important;
+    }
+
+    .search-result-item {
+      img {
+        max-height: 80px;
+      }
+
+      &__name {
+        .highlight {
+          font-weight: 800 !important;
+        }
+        font-size: 1.15rem;
+        margin-bottom: 0;
+      }
+
+      &__rating-out-of {
+        font-size: 0.75rem;
+      }
+    }
+
+    &.active {
+      background: $autocomplete-search-active;
+      @extend .text-muted;
+    }
+  }
+}
+

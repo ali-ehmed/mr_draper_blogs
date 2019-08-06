@@ -8,7 +8,7 @@
           = image_tag rails_blob_path(@blog.preview_image), class: 'img-fluid'
       %h2.mb-3= @blog.title
       - if @blog.short_description.present?
-        %blockquote.blockquote
+        %blockquote.blockquote.text-muted
           = @blog.short_description
 
 

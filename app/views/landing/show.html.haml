@@ -29,7 +29,7 @@
             .d-flex
               %span(class="text-primary landing-intro__or") Or
               = form_tag '#', method: :get, class: 'landing-intro__form w-100' do
-                = text_field_tag :q, nil, class: 'form-control form-control-lg rounded-0', placeholder: "Explore People and How they are writing their Experience"
+                = text_field_tag :q, nil, class: 'form-control form-control-lg rounded-0', data: { controller: 'search' }, placeholder: "Explore People and How they are writing their Experience"
       .landing-intro__bottom
         - unless person_signed_in?
           %button(class="btn btn-primary btn-lg landing-intro__sign-up-button" data-toggle="modal" data-target="#signInModal" data-controller="sign-in-modal-opener" data-sign-in-modal-opener-tab-name="sign_up_tab")

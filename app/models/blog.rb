@@ -34,6 +34,9 @@ class Blog < ApplicationRecord
 
   # Class Methods
   #
+  def self.search(q)
+    joins(:author).where('LOWER(title) iLIKE :q', { q: "%#{q&.downcase}%" })
+  end
 
   # Instance Methods
   #

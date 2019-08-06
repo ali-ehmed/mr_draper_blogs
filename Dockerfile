@@ -27,7 +27,7 @@ RUN bundle install
 # Again, being separate means this will cache.
 COPY package.json /app/package.json
 COPY yarn.lock /app/yarn.lock
-RUN yarn install
+RUN yarn install --check-files
 RUN yarn check --integrity
 
 # Copy the main application.

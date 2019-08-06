@@ -21,7 +21,7 @@ services:
     volumes:
       - '.:/app'
     env_file:
-      - .env
+      - .env.docker
     depends_on:
       - 'redis'
   webpacker:
@@ -33,7 +33,7 @@ services:
       - "3035:3035"
   app:
     build: .
-    command: bash -c "rm -f tmp/pids/server.pid && yarn install --check-files && rails s -p 3000 -b 0.0.0.0"
+    command: bash -c "rm -f tmp/pids/server.pid && rails s -p 3000 -b 0.0.0.0"
     volumes:
       - .:/app
     ports:

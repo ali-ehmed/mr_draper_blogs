@@ -30,8 +30,9 @@ authentication for posts. Integrate 2FA using Twillio Authy app & SMS.
 2. Run `docker-compose run app yarn install --check-files` to load node_nodules in docker container
 3. Open a new Tab and run `docker-compose run app rails db:create db:migrate`
 4. Run `rails sample_data:load_db_to_docker`
-5. Visit `localhost:3000` to your browser
-6. There you go 🎉
+5. Paste the `master.key` in config directory. You have to Obtain it from the Code Owner
+6. Visit `localhost:3000` to your browser
+7. There you go 🎉
 
 ### Setup Manually
 

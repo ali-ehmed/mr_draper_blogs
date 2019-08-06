@@ -12,18 +12,6 @@ services:
       - postgres:/var/lib/postgresql/data
     ports:
       - "5432:5432"
-  redis:
-    image: redis:4.0-alpine
-    command: redis-server
-  sidekiq:
-    build: .
-    command: bundle exec sidekiq -C config/sidekiq.yml
-    volumes:
-      - '.:/app'
-    env_file:
-      - .env.docker
-    depends_on:
-      - 'redis'
   webpacker:
     build: .
     command: bundle exec bin/webpack-dev-server
@@ -31,6 +19,19 @@ services:
       - .:/app
     ports:
       - "3035:3035"
+  redis:
+    image: redis:4.0-alpine
+    command: redis-server
+  sidekiq:
+    build: .
+    command: bundle exec sidekiq -C config/sidekiq.yml
+    volumes:
+      - .:/app
+    env_file:
+      - .env.docker
+    depends_on:
+      - redis
+      - postgres
   app:
     build: .
     command: bash -c "rm -f tmp/pids/server.pid && rails s -p 3000 -b 0.0.0.0"
@@ -38,7 +39,10 @@ services:
       - .:/app
     ports:
       - "3000:3000"
+    env_file:
+      - .env.docker
     depends_on:
       - postgres
       - webpacker
+      - redis
       - sidekiq

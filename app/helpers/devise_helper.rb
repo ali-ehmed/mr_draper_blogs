@@ -1,10 +1,10 @@
-module SessionHelper
+module DeviseHelper
   def resource_name
     :person
   end
 
   def resource
-    @resource ||= Person.new
+    @resource ||= current_person || Person.new
   end
 
   def resource_class

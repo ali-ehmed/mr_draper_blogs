@@ -49,6 +49,9 @@ gem 'omniauth', '~> 1.9'
 gem 'omniauth-facebook', '~> 5.0'
 gem 'omniauth-google-oauth2', '~> 0.6.0'
 
+# This gem mitigate the vulnerability, added here https://github.com/aliahmed922/mr.draper/network/alert/Gemfile.lock/omniauth/open
+gem 'omniauth-rails_csrf_protection', '~> 0.1.2'
+
 # Use Decorators with this Gem
 gem 'draper', '~> 3.0', '>= 3.0.1'
 

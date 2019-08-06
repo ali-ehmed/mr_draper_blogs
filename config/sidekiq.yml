@@ -1,0 +1,12 @@
+---
+:verbose: false
+:concurrency: 5
+:timeout: 8 # recommend for heroku
+:queues:
+  - default
+  - mailers
+
+production:
+  :concurrency: 5
+staging:
+  :concurrency: 5

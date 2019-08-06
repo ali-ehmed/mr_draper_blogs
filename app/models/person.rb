@@ -31,7 +31,8 @@ class Person < ApplicationRecord
 
   # Callbacks
   #
-  before_save :create_username, :enable_authy
+  before_validation :create_username
+  before_save :enable_authy
 
   # Class Methods
   #

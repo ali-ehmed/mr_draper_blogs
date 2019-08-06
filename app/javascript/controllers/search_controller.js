@@ -9,7 +9,7 @@ export default class extends Controller {
       requestType: 'GET',
       keywordParamName: 'q',
       searchDelay: 400,
-      searchIn: 'title',
+      searchIn: ["title", "author_name"],
       searchByWord: true,
       searchContain: true,
       template: (item, keyword) => {
@@ -20,7 +20,7 @@ export default class extends Controller {
             }
             <div class="w-100">
               <h5 class="border-bottom pb-2 mb-2 search-result-item__name item-name">${this.highlight(keyword, item.title)}</h5>
-              <strong class="text-info">${item.author.name}</strong>
+              <strong class="text-info">${item.author_name}</strong>
               <p class="mb-0">
                 <span class="mr-1"><strong>Published At:</strong> ${item.published_at}</span>
               </p>

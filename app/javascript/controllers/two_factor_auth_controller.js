@@ -67,6 +67,7 @@ export default class extends Controller {
 
   requireAuth(e) {
     let el = e.currentTarget;
+    console.log(el)
     
     // Return when Require 2AF is completed
     if (el.dataset.require_auth_completed === 'true') {
@@ -77,7 +78,8 @@ export default class extends Controller {
 
     // Set data attribute to the element which opens the Require Auth Modal, so we can get this source element
     // later from the this data attribute.
-    this.removedataAttributesFromSourceElem();
+    // Remove data attributes first as these attrs will be set only on one Source Elem at a time.
+    this.removeDataAttributesFromSourceElem();
     el.dataset.require_auth_source = 'true';
 
     Rails.ajax({
@@ -120,10 +122,10 @@ export default class extends Controller {
     errorsElement.innerHTML = "";
   }
   
-  removedataAttributesFromSourceElem() {
-    if(this.sourceElement) {
+  removeDataAttributesFromSourceElem() {
+    if (this.sourceElement)
       this.sourceElement.removeAttribute('data-require_auth_source');
+    if (this.sourceElement)
       this.sourceElement.removeAttribute('data-require_auth_completed');
     }
-  }
 }

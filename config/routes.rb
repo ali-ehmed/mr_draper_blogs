@@ -3,6 +3,13 @@ Rails.application.routes.draw do
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
 
+  # Two-Factor Auth
+  resource :two_factor_auth, controller: 'two_factor_auth', only: :new do
+    post :request_auth_token
+    post :verify
+    get :onetouch_approval_status
+  end
+
   # Devise
   devise_for :people, controllers: { omniauth_callbacks: 'people/omniauth_callbacks' }
 
@@ -15,6 +22,8 @@ Rails.application.routes.draw do
           get :schedule_for_later, on: :collection
         end
       end
+
+      resource :two_factor_verification
     end
   end
 

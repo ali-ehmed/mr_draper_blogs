@@ -37,7 +37,7 @@
             = label_tag 'Add or change tags (up to 5) so readers know what your blog is about', nil, class: 'font-size-1'
             = text_field_tag :tags, nil, class: 'form-control rounded-0', placeholder: 'Add a tag...'
           .publish-blog__schedule-form-wrapper.d-none
-          .publish-blog__form-wrapper
+          .publish-blog__form-wrapper(data-controller="two-factor-auth")
             = form_tag people_blog_publish_path(@blog), method: :post do
-              = button_tag 'Publish Now', class: 'btn btn-success mr-3', disabled: !@publish_blog.valid?, data:  { disable_with: "<i class='fa fa-spinner fa-spin'></i> Publishing Blog.." }
+              = button_tag 'Publish Now', class: 'btn btn-success mr-3', disabled: !@publish_blog.valid?, data: { action: 'click->two-factor-auth#requireAuth', disable_with: "<i class='fa fa-spinner fa-spin'></i> Publishing Blog.." }
               = link_to 'Schedule for Later', schedule_for_later_people_blog_publish_path, class: 'text-muted text-decoration-none', remote: true, data: { controller: 'publish-blog--schedule-for-later', action: 'ajax:success->publish-blog--schedule-for-later#renderForm' }

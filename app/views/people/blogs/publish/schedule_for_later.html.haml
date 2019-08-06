@@ -1,7 +1,8 @@
-= form_tag people_blog_publish_path(@blog), method: :post do
-  = hidden_field_tag :status, Blog.statuses[:scheduled]
-  .form-group
-    = label_tag 'Schedule a time to publish', nil, class: 'font-size-1 text-muted'
-    = text_field_tag :scheduled_at, nil, class: 'form-control px-1', data: { controller: 'publish-blog--schedule-at-picker' }
-  = button_tag 'Schedule to publish', class: 'btn btn-success mr-3', disabled: !@publish_blog.valid?, data:  { disable_with: "<i class='fa fa-spinner fa-spin'></i> Scheduling..." }
-  = link_to 'Cancel Scheduling', '#', class: 'text-muted text-decoration-none', data: { controller: 'publish-blog--schedule-for-later', action: 'click->publish-blog--schedule-for-later#closeForm' }
+%div(data-controller="two-factor-auth")
+  = form_tag people_blog_publish_path(@blog), method: :post do
+    = hidden_field_tag :status, Blog.statuses[:scheduled]
+    .form-group
+      = label_tag 'Schedule a time to publish', nil, class: 'font-size-1 text-muted'
+      = text_field_tag :scheduled_at, nil, class: 'form-control px-1', data: { controller: 'publish-blog--schedule-at-picker' }
+    = button_tag 'Schedule to publish', class: 'btn btn-success mr-3', disabled: !@publish_blog.valid?, data:  { action: 'click->two-factor-auth#requireAuth', disable_with: "<i class='fa fa-spinner fa-spin'></i> Scheduling..." }
+    = link_to 'Cancel Scheduling', '#', class: 'text-muted text-decoration-none', data: { controller: 'publish-blog--schedule-for-later', action: 'click->publish-blog--schedule-for-later#closeForm' }

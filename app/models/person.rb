@@ -83,7 +83,21 @@ class Person < ApplicationRecord
   end
 
   def enable_authy
-    self.authy_enabled = cellphone.present? && country_code.present?
+    self.authy_enabled = cellphone.present? || country_code.present?
+
+    return unless authy_enabled?
+
+    authy = Authy::API.register_user(email: email, cellphone: cellphone, country_code: country_code)
+
+    if authy.ok?
+      self.authy_id = authy.id
+    else
+      errors.add(:base, authy.errors)
+    end
+  end
+
+  def authy_registered?
+    authy_id.present?
   end
 
   protected
@@ -95,26 +109,29 @@ end
 #
 # Table name: people
 #
-#  id                      :bigint(8)        not null, primary key
-#  authy_enabled           :boolean          default(FALSE)
-#  cellphone               :string
-#  country_code            :string
-#  email                   :string           default(""), not null
-#  encrypted_password      :string           default(""), not null
-#  last_sign_in_with_authy :datetime
-#  name                    :string
-#  provider                :string(50)       default(""), not null
-#  remember_created_at     :datetime
-#  reset_password_sent_at  :datetime
-#  reset_password_token    :string
-#  uid                     :string(500)      default(""), not null
-#  created_at              :datetime         not null
-#  updated_at              :datetime         not null
-#  authy_id                :string
+#  id                       :bigint(8)        not null, primary key
+#  authy_enabled            :boolean          default(FALSE)
+#  cellphone                :string
+#  country_code             :string
+#  email                    :string           default(""), not null
+#  encrypted_password       :string           default(""), not null
+#  last_authy_approval_uuid :string
+#  last_sign_in_with_authy  :datetime
+#  name                     :string
+#  provider                 :string(50)       default(""), not null
+#  remember_created_at      :datetime
+#  reset_password_sent_at   :datetime
+#  reset_password_token     :string
+#  uid                      :string(500)      default(""), not null
+#  username                 :string
+#  created_at               :datetime         not null
+#  updated_at               :datetime         not null
+#  authy_id                 :string
 #
 # Indexes
 #
 #  index_people_on_authy_id              (authy_id)
 #  index_people_on_email                 (email) UNIQUE
 #  index_people_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_people_on_username              (username) UNIQUE
 #

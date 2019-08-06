@@ -19,5 +19,5 @@
     = f.password_field :password_confirmation, autocomplete: "password_confirmation", class: "form-control #{form_input_error(person, :password_confirmation)}", placeholder: 'Password'
     = form_group_error_message(person, :password_confirmation)
 
-  .form-group.border-bottom.pb-4
+  .form-group.pb-4
     = f.submit 'Update', class: 'btn btn-primary'

@@ -75,6 +75,8 @@ gem 'will_paginate', '~> 3.1.0'
 gem 'will_paginate-bootstrap4'
 
 group :development, :test do
+  # Use 'Dotenv Rails' to autoload dotenv in Rails.
+  gem 'dotenv-rails', '~> 2.7', '>= 2.7.5'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
 end

@@ -33,6 +33,3 @@
 yarn-debug.log*
 .yarn-integrity
 .idea
-
-# Ignore database yml
-/config/database.yml

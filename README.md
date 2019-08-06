@@ -9,38 +9,41 @@ authentication for posts. Integrate 2FA using Twillio Authy app & SMS.
 - [Twitter Bootstrap 4](https://getbootstrap.com/)
 - [Twilio Authy Service](https://www.twilio.com/authy)
 
-### Setup App through Docker
+### Docker
 
-##### Pre-requisites:
+#### Pre-requisites:
 
 - Docker (Latest Version)
 
-##### Steps:
+#### Steps:
 1. Run `docker-compose up --build`
 2. Open a new Tab and run `docker-compose run app rails db:create db:migrate`
 3. Run `rails sample_data:load_db_to_docker`
 4. Visit `localhost:3000` to your browser
 5. There you go 🎉
 
-### Setup App Manually
+### Setup Manually
 
-##### Pre-requisites:
+#### Pre-requisites:
 - Ruby 2.5.3
 - Rails 5.2.3
 - Postgres (Latest Version)
 
-##### Steps:
+#### Steps:
 
-Ruby on Rails Installation on Linux/Mac:
+**Ruby on Rails Installation on Linux/Mac:**
+
 - Visit [Go Rails](http://gorails.com)
 - Under Guides->Installation, follow all the steps to install Ruby on Rails
 
-Redis Installation:
+App uses `sidekiq` as background worker, which requires
 
-App uses `sidekiq` as background worker which requires
+**Redis Installation:**
 
 - Linux `sudo apt-get install redis-server`
 - Mac `brew install redis`
+
+**Setup Application:**
 
 Once Rails/Ruby installed, app can be configured by following below steps:
 
@@ -48,9 +51,10 @@ Once Rails/Ruby installed, app can be configured by following below steps:
 2. Run `bundle` and `yarn install --check-files`
 3. Run `cp config/webpacker.manual.yml config/webpacker.yml`
 4. Run `cp config/database.manual.yml config/database.yml`
-5. Run `rails db:create db:migrate`
-6. Run `rails sample_data:load_db` to get the Sample Data
-7. Paste the `master.key` in config directory. You have to Obtain it from the Code Owner
-8. Run `cp Procfile.example.dev Procfile.dev`
-9. Run `foreman start --procfile Procfile.dev`  
-10. There you go 🎉
+5. Update `.env.development` with your Postgres `username/password`
+6. Run `rails db:create db:migrate`
+7. Run `rails sample_data:load_db` to get the Sample Data
+8. Paste the `master.key` in config directory. You have to Obtain it from the Code Owner
+9. Run `cp Procfile.example.dev Procfile.dev`
+10. Run `foreman start --procfile Procfile.dev`  
+11. There you go 🎉

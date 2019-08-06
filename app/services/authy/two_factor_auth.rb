@@ -36,7 +36,7 @@ module Authy
 
     [VIA[:sms], VIA[:phone_call]].each do |via|
       define_method via do
-        response = Authy::API.__send__(via.to_s, id: authy_id)
+        response = Authy::API.__send__(via.to_s, id: authy_id, force: true)
 
         self.errors = response.errors['message'] unless response.ok?
       end

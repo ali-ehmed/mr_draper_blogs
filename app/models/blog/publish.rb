@@ -20,7 +20,7 @@ class Blog::Publish < Blog
   # Validation Macros
   #
   validates_presence_of :title, :main_content
-  validates :title, length: { minimum: 5, maximum: 80 }
+  validates :title, length: { minimum: 5, maximum: 120 }
 
   # Callbacks
   #

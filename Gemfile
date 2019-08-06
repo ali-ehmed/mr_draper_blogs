@@ -45,6 +45,7 @@ gem 'foreman', '~> 0.85.0'
 gem 'devise', '~> 4.6', '>= 4.6.1'
 
 # Use 'Omniauth' for Social Media Authentication
+gem 'omniauth', '~> 1.9'
 gem 'omniauth-facebook', '~> 5.0'
 gem 'omniauth-google-oauth2', '~> 0.6.0'
 

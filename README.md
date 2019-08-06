@@ -5,8 +5,9 @@ authentication for posts. Integrate 2FA using Twillio Authy app & SMS.
 
 ### Tools
 - [Ruby on Rails](https://rubyonrails.org/)
-- [Stimulus JS](https://stimulusjs.org/handbook/origin) (Javascript Framework)
+- [Stimulus JS](https://stimulusjs.org/handbook/origin)
 - [Twitter Bootstrap 4](https://getbootstrap.com/)
+- [HAML](http://haml.info/)
 - [Twilio Authy Service](https://www.twilio.com/authy)
 
 ### Docker
@@ -14,13 +15,23 @@ authentication for posts. Integrate 2FA using Twillio Authy app & SMS.
 #### Pre-requisites:
 
 - Docker (Latest Version)
+- Docker Compose (Latest Version)
 
 #### Steps:
+
+**Docker on Linux/Mac:**
+
+- [Linux](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
+- [Mac](https://docs.docker.com/docker-for-mac/install/)
+
+**Setup Application:**
+
 1. Run `docker-compose up --build`
-2. Open a new Tab and run `docker-compose run app rails db:create db:migrate`
-3. Run `rails sample_data:load_db_to_docker`
-4. Visit `localhost:3000` to your browser
-5. There you go 🎉
+2. Run `docker-compose run app yarn install --check-files` to load node_nodules in docker container
+3. Open a new Tab and run `docker-compose run app rails db:create db:migrate`
+4. Run `rails sample_data:load_db_to_docker`
+5. Visit `localhost:3000` to your browser
+6. There you go 🎉
 
 ### Setup Manually
 

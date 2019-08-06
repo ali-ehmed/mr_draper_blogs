@@ -8,7 +8,7 @@
           = image_tag rails_blob_path(@blog.preview_image), class: 'img-fluid'
       %h2.mb-3= @blog.title
       - if @blog.short_description.present?
-        %blockquote.blockquote
+        %blockquote.blockquote.text-muted
           = @blog.short_description
 
 
@@ -18,4 +18,5 @@
           %h6.mb-0= @blog.author.name
           %span.text-muted.font-size-1
             = @blog.display_published_at
-      = @blog.main_content&.html_safe
+      .blog__main-content
+        = @blog.main_content&.html_safe

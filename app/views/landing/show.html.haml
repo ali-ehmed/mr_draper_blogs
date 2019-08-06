@@ -29,7 +29,7 @@
             .d-flex
               %span(class="text-primary landing-intro__or") Or
               = form_tag '#', method: :get, class: 'landing-intro__form w-100' do
-                = text_field_tag :q, nil, class: 'form-control form-control-lg rounded-0', placeholder: "Explore People and How they are writing their Experience"
+                = text_field_tag :q, nil, class: 'form-control form-control-lg rounded-0', data: { controller: 'search' }, placeholder: "Explore People and How they are writing their Experience"
       .landing-intro__bottom
         - unless person_signed_in?
           %button(class="btn btn-primary btn-lg landing-intro__sign-up-button" data-toggle="modal" data-target="#signInModal" data-controller="sign-in-modal-opener" data-sign-in-modal-opener-tab-name="sign_up_tab")
@@ -38,6 +38,28 @@
           Share your amazing
           %strong Experience
           with the world
+
+.container.mt-5
+  %h3.mb-5.text-center Popular on Mr.Draper
+  - if @blogs.present?
+    %ul(class="list-group list-group-flush")
+      - @blogs.each do |blog|
+        %li.list-group-item
+          .d-flex
+            - if blog.preview_image.attached?
+              = image_tag rails_blob_path(blog.preview_image), class: 'img-fluid w-10 mr-3'
+            .w-80
+              %h4
+                = link_to blog.title.presence, blog_path(blog.id), class: 'text-muted text-decoration-none'
+              %small.font-size-2= blog.author.name
+              .font-size-1
+                %span(class="text-muted")
+                  Published At
+                  = time_ago_in_words(blog.published_at, include_seconds: true)
+
+    .mt-5.float-right
+      = will_paginate @blogs, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
+
 
 
 = render 'people/shared/modal'

@@ -66,6 +66,10 @@ gem 'cancancan', '~> 3.0.1b'
 # Use 'Sidekiq' to enqueue job in future
 gem 'sidekiq', '~> 5.2.7'
 
+# Use 'Will Paginate' for pagination in views
+gem 'will_paginate', '~> 3.1.0'
+gem 'will_paginate-bootstrap4'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

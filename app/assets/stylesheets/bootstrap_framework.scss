@@ -19,12 +19,15 @@
 .custom-tabs {
   border-bottom: none;
   a {
+    color: map_get($theme-colors, dark) !important;
     border: none;
 
     &.active, &:hover {
+      padding-bottom: 5px;
+      padding-top: 10px;
       background-color: transparent !important;
       border: 0;
-      border-bottom: 2px solid map_get($theme-colors, light);
+      border-bottom: 2px solid map_get($theme-colors, light) !important;
     }
   }
 }

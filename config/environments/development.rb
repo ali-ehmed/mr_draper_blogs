@@ -62,6 +62,6 @@ Rails.application.configure do
   # Action Mailer default URL options
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
-  # Active Job async adapter runs jobs with an in-process thread pool.
-  config.active_job.queue_adapter = :async
+  # Active Job Sidekiq adapter for enqueuing Background Jobs
+  config.active_job.queue_adapter = :sidekiq
 end

@@ -17,10 +17,11 @@
           = time_ago_in_words(blog.published_at, include_seconds: true)
         - else
           = '---'
-    %span(class="text-muted") .
-    %span(class="text-muted font-size-2 align-middle")
-      = link_to '#', class: 'text-decoration-none', data: { toggle: 'dropdown', 'aria-haspopup': 'true', 'aria-expanded': 'false' } do
-        %i(class="fas fa-angle-down")
-      %div(class="dropdown-menu font-size-1")
-        = link_to "Edit #{scope.singularize.titleize}", edit_people_blog_path(blog), class: 'dropdown-item'
-        = link_to "Delete #{scope.singularize.titleize}", people_blog_path(blog, scope: scope), method: :delete, class: 'dropdown-item', data: { confirm: 'Are you certain you want to Delete this  Blog?', commit: 'Yes!' }
+    - if can?(:manage, blog)
+      %span(class="text-muted") .
+      %span(class="text-muted font-size-2 align-middle")
+        = link_to '#', class: 'text-decoration-none', data: { toggle: 'dropdown', 'aria-haspopup': 'true', 'aria-expanded': 'false' } do
+          %i(class="fas fa-angle-down")
+        %div(class="dropdown-menu font-size-1")
+          = link_to "Edit #{scope.singularize.titleize}", edit_people_blog_path(blog), class: 'dropdown-item'
+          = link_to "Delete #{scope.singularize.titleize}", people_blog_path(blog, scope: scope), method: :delete, class: 'dropdown-item', data: { confirm: 'Are you certain you want to Delete this  Blog?', commit: 'Yes!' }

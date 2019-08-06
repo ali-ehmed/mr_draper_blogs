@@ -57,6 +57,15 @@ gem 'haml-rails', '~> 2.0', '>= 2.0.1'
 # Use 'Gravtastic', The super fantastic way of getting Gravatars.
 gem 'gravtastic', '~> 3.2.6'
 
+# Use 'Authy', Ruby library to access Authy services
+gem 'authy', '~> 2.7', '>= 2.7.5'
+
+# CanCanCan is an authorization library for Ruby >= 2.2.0 and Ruby on Rails >= 4.2 which restricts what resources a given user is allowed to access.
+gem 'cancancan', '~> 3.0.1b'
+
+# Use 'Sidekiq' to enqueue job in future
+gem 'sidekiq', '~> 5.2.7'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

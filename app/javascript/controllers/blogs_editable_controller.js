@@ -23,6 +23,7 @@ export default class extends Controller {
     // Use Custom Event of Medium Text Editor for Form Submission
     editor.subscribe('blur', (mouseEvent, editor) => {
       let value = editor.innerText;
+
       if (!!value)
         this.submitForm($(this.element).serialize());
     });

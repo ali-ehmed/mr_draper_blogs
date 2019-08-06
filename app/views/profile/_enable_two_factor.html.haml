@@ -1,0 +1,8 @@
+= form_for person, url: settings_path(tab: 'enable_two_factor') do |f|
+  .row.form-group
+    .col-6
+      = f.text_field :country_code, class: 'form-control', placeholder: 'Enter Country Code'
+    .col-6
+      = f.text_field :cellphone, class: 'form-control', placeholder: 'Enter Cellphone'
+  .form-group
+    = f.submit 'Enable Two Factor', class: 'btn btn-primary'

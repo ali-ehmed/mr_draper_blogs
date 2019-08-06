@@ -32,6 +32,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def current_ability
+    @current_ability ||= Ability.new(current_person)
+  end
+
+  def require_two_factor_authentication
+
+  end
+
   protected
 
     def configure_permitted_parameters

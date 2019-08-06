@@ -1,0 +1,32 @@
+= content_for(:title, @person.name)
+.container
+  .row
+    .offset-md-2.col-md-8.offset-0.col-12
+      .d-flex.mb-5
+        = @person.gravatar_image_tag({}, { style: 'height: 100px;' })
+        .ml-3
+          %h3.mb-3= @person.name
+          %span.text-muted.font-size-1
+            - if @person.current_person?
+              = link_to 'My Blogs', people_blogs_path, class: 'btn btn-sm btn-outline-warning mr-3'
+              = link_to 'Write a New Blog', new_people_blog_path, class: 'btn btn-sm btn-outline-success mr-3'
+            %span(class="btn btn-sm btn-outline-info")= "Total Blogs (#{@blogs.length})"
+
+      - if @person.current_person?
+        %ul(class="nav nav-tabs custom-tabs mb-4" role="tablist")
+          %li.nav-item
+            = link_to 'Edit Profile', '#edit_profile', class: "nav-link #{params[:tab] == 'edit_profile' ? 'active' : ''} #{params[:tab].blank? ? 'active' : ''}", role: 'tab', 'aria-controls': 'edit_profile', 'aria-selected': 'edit_profile', data: { toggle: 'tab' }
+          %li.nav-item
+            = link_to 'Enable Two Factor', '#enable_two_factor', class: "nav-link #{params[:tab] == 'enable_two_factor' ? 'active' : ''}", role: 'tab', 'aria-controls': 'enable_two_factor', 'aria-selected': 'enable_two_factor', data: { toggle: 'tab' }
+
+        .tab-content
+          %div(class="tab-pane fade show #{params[:tab] == 'edit_profile' ? 'active' : ''} #{params[:tab].blank? ? 'active' : ''}" id="edit_profile" role="tabpanel" aria-labelledby="edit_profile-tab")
+            = render 'profile/edit', person: @person
+          %div(class="tab-pane fade show #{params[:tab] == 'enable_two_factor' ? 'active' : ''}" id="enable_two_factor" role="tabpanel" aria-labelledby="enable_two_factor-tab")
+            = render 'profile/enable_two_factor', person: @person
+      - else
+        - if @blogs.present?
+          %ul(class="list-group list-group-flush")
+            = render partial: 'people/blogs/blogs', collection: @person.blogs.published.latest, as: :blog, locals: { scope: Blog.statuses[:published] }
+        - else
+          %h4 There are no Blogs

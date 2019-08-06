@@ -7,7 +7,7 @@ module People
           set_flash_message(:notice, :success, kind: provider.to_s.titleize) if is_navigational_format?
           sign_in_and_redirect person, event: :authentication # This will throw if @person is not activated
         else
-          redirect_to root_path, alert: I18n.t('devise.omniauth_callbacks.failure' % { kind: provider.to_s.titleize })
+          redirect_to root_path, alert: I18n.t('devise.omniauth_callbacks.failure', { kind: provider.to_s.titleize })
         end
       end
     end

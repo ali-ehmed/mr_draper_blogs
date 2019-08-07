@@ -1,6 +1,6 @@
 # This is a simple child class of Blog model that has all the validations
-# We don't to put validations inside Blog, as the blog can be created without any validation
-# But when the of Publish, we have to validate it.
+# We don't put validations inside Blog, as the blog can be created without any validation
+# But when we Publish the blog, we have to validate it.
 #
 class Blog::Publish < Blog
   # Concerns Macros

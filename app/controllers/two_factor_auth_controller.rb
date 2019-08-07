@@ -1,4 +1,8 @@
 class TwoFactorAuthController < ApplicationController
+  rescue_from 'Authy::TwoFactorAuthError' do |e|
+    render json: { errors: e.message }
+  end
+
   def new
     render layout: false
   end
@@ -12,11 +16,9 @@ class TwoFactorAuthController < ApplicationController
     else
       render json: { errors: authy.errors }
     end
-  rescue Authy::TwoFactorAuthError => e
-    render json: { errors: e.message }
   end
 
-  # Requests Authy API to send the Token to user's device via SMS, Phone Call or OneTouch
+  # Requests Authy API to send the Token to the user's device via SMS, Phone Call or OneTouch
   def request_auth_token
     authy = Authy::TwoFactorAuth.new(current_person, via: params[:via])
     authy.request_auth_token
@@ -26,8 +28,6 @@ class TwoFactorAuthController < ApplicationController
     else
       head :ok
     end
-  rescue Authy::TwoFactorAuthError => e
-    render json: { errors: e.message }
   end
 
   # This action is hit through polling, as polling is the recommended way by Authy API to check the Push Authentication approval status
@@ -35,7 +35,5 @@ class TwoFactorAuthController < ApplicationController
     authy = Authy::TwoFactorAuth.new(current_person)
 
     render json: { status: authy.onetouch_approval_status }
-  rescue Authy::TwoFactorAuthError => e
-    render json: { errors: e.message }
   end
 end

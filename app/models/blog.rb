@@ -24,6 +24,7 @@ class Blog < ApplicationRecord
 
   # Validation Macros
   #
+  # Validations are present in Blog::Publish
 
   # Callbacks
   #

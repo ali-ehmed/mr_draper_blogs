@@ -17,7 +17,11 @@ module People
       def create
         if publish_blog_params[:status] == Blog.statuses[:scheduled]
           @blog.schedule_for_later(publish_blog_params[:scheduled_at])
-          flash[:notice] = I18n.t('blogs.publish.scheduled', { scheduled_at: I18n.l(@blog.published_at, format: :default) })
+          flash[:notice] =
+            I18n.t(
+              'blogs.publish.scheduled',
+              { scheduled_at: I18n.l(@blog.published_at, format: :default) }
+            ) << schedule_note_in_dev_env
         else
           @blog.publish
           flash[:notice] = I18n.t('blogs.publish.published')
@@ -38,6 +42,12 @@ module People
 
         def publish_blog_params
           params.permit(:status, :scheduled_at)
+        end
+
+        def schedule_note_in_dev_env
+          return '' unless Rails.env.development?
+
+          I18n.t('blogs.publish.schedule_note')
         end
     end
   end

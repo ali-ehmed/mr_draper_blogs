@@ -8,5 +8,7 @@ namespace :sample_data do
 
   task :load_db_to_docker do
     `cat ./db/sample | docker exec -i mrdraper_postgres_1 psql -U postgres -d mr_draper_development`
+    # For some reason, need to restore dump twice to load images. I know that's weird but for now it's okay :P
+    `cat ./db/sample | docker exec -i mrdraper_postgres_1 psql -U postgres -d mr_draper_development`
   end
 end

@@ -36,10 +36,6 @@ class ApplicationController < ActionController::Base
     @current_ability ||= Ability.new(current_person)
   end
 
-  def require_two_factor_authentication
-
-  end
-
   protected
 
     def configure_permitted_parameters

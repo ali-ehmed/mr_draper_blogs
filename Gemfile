@@ -42,7 +42,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'foreman', '~> 0.85.0'
 
 # Use 'Devise' for Authentication
-gem 'devise', '~> 4.6', '>= 4.6.1'
+gem 'devise', '~> 4.7'
 
 # Use 'Omniauth' for Social Media Authentication
 gem 'omniauth', '~> 1.9'

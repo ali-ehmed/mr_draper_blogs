@@ -1,5 +1,5 @@
 {
-  "name": "mr_draper",
+  "name": "mr_draper_blogs",
   "private": true,
   "dependencies": {
     "@rails/webpacker": "^4.0.7",

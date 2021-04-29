@@ -1,4 +1,4 @@
-# Mr.Draper
+# Mr.Draper Blogs
 
 Simple blog application with oAuth enabled for user registration and login and integrate 2 factor
 authentication for posts. Integrate 2FA using Twillio Authy app & SMS. 

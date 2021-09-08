@@ -86,7 +86,7 @@ group :development do
   gem 'annotate', '~> 2.7', '>= 2.7.3'
 
   # Use 'Better Errors' to replace the standard Rails error page with a much better and more useful error page
-  gem 'better_errors', '~> 2.4'
+  gem 'better_errors', '~> 2.8'
   gem 'binding_of_caller', '~> 0.8.0'
 
   # A Ruby static code analyzer and formatter, based on the community Ruby style guide.

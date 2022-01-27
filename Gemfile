@@ -68,7 +68,7 @@ gem 'authy', '~> 2.7', '>= 2.7.5'
 gem 'cancancan', '~> 3.0.1b'
 
 # Use 'Sidekiq' to enqueue job in future
-gem 'sidekiq', '~> 5.2.7'
+gem 'sidekiq', '~> 6.4.0'
 
 # Use 'Will Paginate' for pagination in views
 gem 'will_paginate', '~> 3.1.0'
